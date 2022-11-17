@@ -53,6 +53,7 @@ public class Main {
         }
         System.out.println("");
         
+        APP:
         while (true) {
             OUTER:
             while (true) {
@@ -60,7 +61,8 @@ public class Main {
                 System.out.println("1. Register");
                 System.out.println("2. Login");
                 System.out.println("3. Next menu");
-                System.out.print("Pilihan (1-3): ");
+                System.out.println("4. Exit");
+                System.out.print("Pilihan (1-4): ");
                 int pil = s.nextInt();
 
                 switch (pil) {
@@ -94,6 +96,9 @@ public class Main {
                             break OUTER;
                         }
                         break;
+                    case 4:
+                        System.out.println("\nSelamat tinggal!\n");
+                        break APP;
                     default:
                         System.out.println("\nPilihan invalid!\n");
                 }
