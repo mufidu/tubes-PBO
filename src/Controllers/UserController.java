@@ -11,14 +11,13 @@ import Models.UserModel;
  */
 public class UserController {
     
-    public void getUser(UserModel[] users, int id){
-        for(int i = 0; i < users.length; i++){
-            if(users[i].getId() == id){
-                System.out.println("Username: " + users[i].getUsername());
-                System.out.println("Friends: ");
-                break;
+    public UserModel getUser(UserModel[] users, int id){
+        for (UserModel user : users) {
+            if (user.getId() == id) {
+                return user;
             }
         }
+        return null;
     }
     
     public void updateUser(UserModel[] users, int id){

@@ -13,7 +13,10 @@ public class AuthController {
     Scanner s = new Scanner(System.in);
     
     public void registerUser(UserModel[] userList, int numOfUser){
-        System.out.println("REGISTER!");
+        System.out.println("");
+        System.out.println("============================");
+        System.out.println("==========REGISTER==========");
+        System.out.println("============================");
         System.out.print("Username: ");
         String username = s.next();
         System.out.print("Password: ");
@@ -23,6 +26,7 @@ public class AuthController {
         
         if (password.equals(confirmPass)){
             userList[numOfUser-1]  = new UserModel(username, password);
+            System.out.println("Registrasi berhasil!\n");
         }
         else{
             System.out.println("Confirm Password tidak sesuai");
@@ -30,7 +34,10 @@ public class AuthController {
     }
     
     public int loginUser(UserModel[] userList){
-        System.out.println("LOGIN!");
+        System.out.println("");
+        System.out.println("============================");
+        System.out.println("============LOGIN===========");
+        System.out.println("============================");
         System.out.print("Username: ");
         String username = s.next();
         System.out.print("Password: ");
