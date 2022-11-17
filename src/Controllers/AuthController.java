@@ -11,9 +11,8 @@ import Models.UserModel;
  */
 public class AuthController {
     Scanner s = new Scanner(System.in);
-    private int i = 0;
     
-    public void registerUser(UserModel[] userList){
+    public void registerUser(UserModel[] userList, int numOfUser){
         System.out.println("REGISTER!");
         System.out.print("Username: ");
         String username = s.next();
@@ -23,8 +22,7 @@ public class AuthController {
         String confirmPass = s.next();
         
         if (password.equals(confirmPass)){
-            userList[i]  = new UserModel(username, password);
-            i++;
+            userList[numOfUser-1]  = new UserModel(username, password);
         }
         else{
             System.out.println("Confirm Password tidak sesuai");
