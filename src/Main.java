@@ -10,6 +10,7 @@ import java.awt.Font;
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -31,6 +32,8 @@ public class Main {
         AuthController auth = new AuthController();
         UserModel[] userList = new UserModel[numOfUser];
         UserModel[] tempUserList = userList;
+        double currentId = 0;
+        UserModel currentUser = new UserModel(null, null);
         
         BufferedImage image = new BufferedImage(144, 32, BufferedImage.TYPE_INT_RGB);
         Graphics g = image.getGraphics();
@@ -50,35 +53,70 @@ public class Main {
         }
         System.out.println("");
         
-        while(true){
+        OUTER:
+        while (true) {
             System.out.println("Apa yang ingin Anda lakukan?");
             System.out.println("1. Register");
             System.out.println("2. Login");
-        
-            System.out.print("Pilihan (1-2): ");
+            System.out.println("3. Next menu");
+            System.out.print("Pilihan (1-3): ");
             int pil = s.nextInt();
+            
+            switch (pil) {
+                case 1:
+                    numOfUser++;
+                    tempUserList = userList;
+                    userList = new UserModel[numOfUser];
+                    System.arraycopy(tempUserList, 0, userList, 0, tempUserList.length);
+                    auth.registerUser(userList, numOfUser);
+                    break;
+                case 2:
+                    double userId = auth.loginUser(userList);
+                    if (userId != -1){
+                        System.out.println("");
+                        System.out.println("=======Selamat Datang!======");
+                        UserModel u = user.getUserById(userList, userId);
+                        System.out.println("Username: " + u.getUsername());
+                        System.out.println("Friends: " + Arrays.toString(u.getFriends()));
+                        System.out.println("");
+                        currentId = userId;
+                        currentUser = user.getUserById(userList, currentId);
+                    }
+                    else {
+                        System.out.println("\nUsername atau password yang dimasukkan salah!\n");
+                    }   break;
+                case 3:
+                    if (currentId == 0) {
+                        System.out.println("\nMaaf Anda harus login terlebih dahulu!\n");
+                    } else {
+                        System.out.println("\n============================\n");
+                        break OUTER;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
         
-            if(pil == 1){
-                numOfUser++;
-                tempUserList = userList;
-                userList = new UserModel[numOfUser];
-                for (int i = 0; i < tempUserList.length; i++) {
-                    userList[i] = tempUserList[i];
-                }
-                auth.registerUser(userList, numOfUser);
-            } else if(pil == 2) {
-                int userId = auth.loginUser(userList);
-                if (userId != -1){
-                    System.out.println("");
-                    System.out.println("=======Selamat Datang!======");
-                    UserModel u = user.getUser(userList, userId);
-                    System.out.println("Username: " + u.getUsername());
-                    System.out.println("Friends: " + u.getFriends());
-                    System.out.println("");
-                }
-                else {
-                    System.out.println("\nUsername atau password yang dimasukkan salah!\n");
-                }
+        while (true) {            
+            System.out.println("Apa yang ingin Anda lakukan?");
+            System.out.println("1. Tambah teman");
+            System.out.println("2. Info profil");
+            
+            System.out.print("Pilihan (1): ");
+            int pil = s.nextInt();
+            
+            if (pil == 1) {
+                System.out.print("Apa username teman Anda? ");
+                String friendUsername = s.next();
+                UserModel friend = user.getUserByUsername(userList, friendUsername);
+                user.addFriends(currentUser, friend);
+            } else if (pil == 2) {
+                UserModel u = user.getUserById(userList, currentId);
+                System.out.println("\nHalo, "+u.getUsername()+"!");
+                System.out.println("Username: " + u.getUsername());
+                System.out.println("Friends: " + Arrays.toString(u.getFriends()));
+                System.out.println("");
             }
         }
     }

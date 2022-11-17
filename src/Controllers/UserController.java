@@ -11,9 +11,18 @@ import Models.UserModel;
  */
 public class UserController {
     
-    public UserModel getUser(UserModel[] users, int id){
+    public UserModel getUserById(UserModel[] users, double id){
         for (UserModel user : users) {
             if (user.getId() == id) {
+                return user;
+            }
+        }
+        return null;
+    }
+    
+    public UserModel getUserByUsername(UserModel[] users, String username){
+        for (UserModel user : users) {
+            if (user.getUsername().equals(username)) {
                 return user;
             }
         }
@@ -57,4 +66,14 @@ public class UserController {
         
     }
     
+    
+    public void addFriends(UserModel currentUser, UserModel friend) {
+        double[] tempFriends = currentUser.getFriends();
+        double[] newFriends = new double[tempFriends.length+1];
+        for (int i = 0; i < tempFriends.length; i++) {
+            newFriends[i] = tempFriends[i];
+        }
+        newFriends[newFriends.length-1] = friend.getId();
+        currentUser.setFriends(newFriends);
+    }
 }

@@ -26,14 +26,14 @@ public class AuthController {
         
         if (password.equals(confirmPass)){
             userList[numOfUser-1]  = new UserModel(username, password);
-            System.out.println("Registrasi berhasil!\n");
+            System.out.println("\nRegistrasi berhasil!\n");
         }
         else{
             System.out.println("Confirm Password tidak sesuai");
         }
     }
     
-    public int loginUser(UserModel[] userList){
+    public double loginUser(UserModel[] userList){
         System.out.println("");
         System.out.println("============================");
         System.out.println("============LOGIN===========");
@@ -42,10 +42,11 @@ public class AuthController {
         String username = s.next();
         System.out.print("Password: ");
         String password = s.next();
-        
-        for(int idx = 0; idx < userList.length; idx++){
-            if((userList[idx].getUsername().equals(username)) && (userList[idx].getPassword().equals(password))){
-                return userList[idx].getId();
+    
+        for (UserModel user : userList) {
+            if (user.getUsername().equals(username) && 
+                    user.getPassword().equals(password)) {
+                return user.getId();
             }
         }
         return -1;
