@@ -10,7 +10,6 @@ import Models.UserModel;
  * @author johan
  */
 public class UserController {
-    
     public UserModel getUserById(UserModel[] users, double id){
         for (UserModel user : users) {
             if (user.getId() == id) {
@@ -33,10 +32,10 @@ public class UserController {
         Scanner s = new Scanner(System.in);
         for (UserModel user : users) {
             if (user.getId() == id) {
-                System.out.println("\nUsername baru: ");
+                System.out.print("\nUsername baru: ");
                 String newUsername = s.next();
                 user.setUsername(newUsername);
-                System.out.println("Password baru: ");
+                System.out.print("Password baru: ");
                 String newPassword = s.next();
                 user.setPassword(newPassword);
                 break;
@@ -44,28 +43,18 @@ public class UserController {
         }
     }
     
-    public void deleteUser(UserModel[] users, int id){
-        for(int i = 0; i < users.length; i++){
-            if(users[i].getId() == id){
-                users[i] = null;
-                break;
-            }
-        }
-    }
-    
-    public void addUser(UserModel[] users, int id){
-        for(int i = 0; i < users.length; i++){
-            if(users[i].getId() == id){
-                
-                break;
-            }
-        }
-    }
-    
-    public void removeUser(UserModel[] users, int id){
+    public UserModel[] deleteUser(UserModel[] users, double id){
+        UserModel[] newUsers = new UserModel[users.length-1];
         
+        for(int i = 0, k = 0; i < users.length; i++){
+            if(users[i].getId() != id){
+                newUsers[k] = users[i];
+                k++;
+            }
+        }
+        
+        return newUsers;
     }
-    
     
     public void addFriends(UserModel currentUser, UserModel friend) {
         double[] tempFriends = currentUser.getFriends();

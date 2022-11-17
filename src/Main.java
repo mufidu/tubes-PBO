@@ -55,7 +55,7 @@ public class Main {
         
         APP:
         while (true) {
-            OUTER:
+            MENU:
             while (true) {
                 System.out.println("Apa yang ingin Anda lakukan?");
                 System.out.println("1. Register");
@@ -93,7 +93,7 @@ public class Main {
                             System.out.println("\nMaaf Anda harus login terlebih dahulu!\n");
                         } else {
                             System.out.println("\n============================\n");
-                            break OUTER;
+                            break MENU;
                         }
                         break;
                     case 4:
@@ -101,17 +101,19 @@ public class Main {
                         break APP;
                     default:
                         System.out.println("\nPilihan invalid!\n");
+                        break;
                 }
             }
 
-            OUTER_1:            
+            LOGGED_IN:            
             while (true) {
                 System.out.println("Apa yang ingin Anda lakukan?");
                 System.out.println("1. Tambah teman");
                 System.out.println("2. Info profil");
                 System.out.println("3. Edit user");
-                System.out.println("4. Log out");
-                System.out.print("Pilihan (1): ");
+                System.out.println("4. Hapus user");
+                System.out.println("5. Log out");
+                System.out.print("Pilihan (1-5): ");
                 int pil = s.nextInt();
 
                 switch (pil) {
@@ -145,11 +147,23 @@ public class Main {
                         System.out.println("\nUser berhasil diubah!\n");
                         break;
                     case 4:
+                        System.out.print("Yakin ingin menghapus user? (y/n): ");
+                        String yakin = s.next();
+                        if ("y".equals(yakin)) {
+                            userList = user.deleteUser(userList, currentId);
+                            System.out.println("\nUser berhasil dihapus.\n");
+                            break LOGGED_IN;
+                        } else {
+                            System.out.println("\nUser tidak jadi dihapus\n");
+                            break;
+                        }
+                    case 5:
                         currentId = 0;
                         System.out.println("\nAnda telah log out.\n");
-                        break OUTER_1;
+                        break LOGGED_IN;
                     default:
                         System.out.println("\nPilihan invalid!\n");
+                        break;
                 }
             }
         }
