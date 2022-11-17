@@ -31,7 +31,7 @@ public class Main {
         UserController user = new UserController();
         AuthController auth = new AuthController();
         UserModel[] userList = new UserModel[numOfUser];
-        UserModel[] tempUserList = userList;
+        UserModel[] tempUserList;
         double currentId = 0;
         UserModel currentUser = new UserModel(null, null);
         
@@ -109,7 +109,8 @@ public class Main {
                 System.out.println("Apa yang ingin Anda lakukan?");
                 System.out.println("1. Tambah teman");
                 System.out.println("2. Info profil");
-                System.out.println("3. Log out");
+                System.out.println("3. Edit user");
+                System.out.println("4. Log out");
                 System.out.print("Pilihan (1): ");
                 int pil = s.nextInt();
 
@@ -128,13 +129,22 @@ public class Main {
                         System.out.println("Username: " + u.getUsername());
                         System.out.println("Username teman-teman: ");
                         double[] friends = u.getFriends();
-                        for (int i = 0; i < friends.length; i++) {
-                            int no = i+1;
-                            System.out.println(no+". "
-                                    + user.getUserById(userList, friends[i]).getUsername());
-                        }   System.out.println("");
+                        if (friends.length == 0) {
+                            System.out.println("Anda belum punya teman!");
+                        } else {
+                            for (int i = 0; i < friends.length; i++) {
+                                int no = i+1;
+                                System.out.println(no+". "
+                                        + user.getUserById(userList, friends[i]).getUsername());
+                            }   
+                        }
+                        System.out.println("");
                         break;
                     case 3:
+                        user.updateUser(userList, currentId);
+                        System.out.println("\nUser berhasil diubah!\n");
+                        break;
+                    case 4:
                         currentId = 0;
                         System.out.println("\nAnda telah log out.\n");
                         break OUTER_1;

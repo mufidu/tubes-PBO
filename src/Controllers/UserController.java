@@ -29,16 +29,16 @@ public class UserController {
         return null;
     }
     
-    public void updateUser(UserModel[] users, int id){
+    public void updateUser(UserModel[] users, double id){
         Scanner s = new Scanner(System.in);
-        for(int i = 0; i < users.length; i++){
-            if(users[i].getId() == id){
-                System.out.print("Username baru: ");
+        for (UserModel user : users) {
+            if (user.getId() == id) {
+                System.out.println("\nUsername baru: ");
                 String newUsername = s.next();
-                users[i].setUsername(newUsername);
+                user.setUsername(newUsername);
                 System.out.println("Password baru: ");
                 String newPassword = s.next();
-                users[i].setPassword(newPassword);
+                user.setPassword(newPassword);
                 break;
             }
         }
