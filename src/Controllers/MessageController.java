@@ -4,10 +4,37 @@
  */
 package Controllers;
 
+import Models.MessageModel;
+import Models.ChatModel;
+import java.lang.Math;
+import java.text.SimpleDateFormat;  
+import java.util.Date;  
 /**
  *
  * @author johan
  */
 public class MessageController {
+
+    public MessageModel addMessage(String message, double chatid, double senderid){
+        MessageModel m = new MessageModel(Math.random());
+        m.setChatId(chatid);
+        m.setSenderId(senderid);
+        m.setText(message);
+        Date date = new Date();
+        m.setTimesent(date);   
+        
+        return m;
+    }
+    
+    public void getMessage(double chatid, ChatModel cl[]){
+        boolean isFound = false;
+        int i=0;
+        while(isFound == false){
+            if(chatid == cl[i].getId()){
+                //get apa?
+            }
+        }
+    }
+    
     
 }
