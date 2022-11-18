@@ -1,6 +1,10 @@
 import Controllers.AuthController;
 import Controllers.UserController;
+import Controllers.ChatController;
+import Controllers.MessageController;
+import Models.ChatModel;
 import Models.UserModel;
+import Models.ChatModel;
 import java.util.Scanner;
 import java.awt.image.BufferedImage;
 import java.awt.Graphics;
@@ -11,6 +15,7 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
+
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -34,6 +39,9 @@ public class Main {
         UserModel[] tempUserList;
         double currentId = 0;
         UserModel currentUser = new UserModel(null, null);
+        ChatModel[] ChatList = new ChatModel[9999];
+        int ChatCount = 0;
+        
         
         BufferedImage image = new BufferedImage(144, 32, BufferedImage.TYPE_INT_RGB);
         Graphics g = image.getGraphics();
@@ -113,7 +121,8 @@ public class Main {
                 System.out.println("3. Edit user");
                 System.out.println("4. Hapus user");
                 System.out.println("5. Log out");
-                System.out.print("Pilihan (1-5): ");
+                System.out.println("6. Bikin Chat");
+                System.out.print("Pilihan (1-6): ");
                 int pil = s.nextInt();
 
                 switch (pil) {
@@ -161,6 +170,15 @@ public class Main {
                         currentId = 0;
                         System.out.println("\nAnda telah log out.\n");
                         break LOGGED_IN;
+                    case 6:
+                        ChatController Chat = new ChatController();
+                        System.out.print("Masukkan User Id teman anda: ");
+                        double idteman = s.nextDouble();
+                        ChatList[ChatCount] = Chat.createChat(currentId, idteman);
+                        ChatCount++;
+                        System.out.println("Chat berhasil dibuat!");
+                        break;
+                        
                     default:
                         System.out.println("\nPilihan invalid!\n");
                         break;
