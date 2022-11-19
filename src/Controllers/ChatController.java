@@ -37,13 +37,14 @@ public class ChatController {
         int matches=0;
         
         for(i=0;i<cl.length;i++){
-            for(int j=0;j<cl[i].getMembercount();i++){
+            for(int j=0;j<2;j++){
                 if(users[0] == cl[i].getMembers()[j] || users[1] == cl[i].getMembers()[j]){
-                   matches+=1; 
+                   matches+=1;
                 }
             }
             if(matches == 2){
                 System.out.println("ChatID = " + cl[i].getId());
+                break;
             } else {
                 matches = 0;
             }

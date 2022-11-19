@@ -198,10 +198,11 @@ public class Main {
                         System.out.println("");
                         System.out.print("Masukkan chat ID: ");
                         double id_chat = s.nextDouble();
-                        for(int i = 0;i<ChatList.length;i++){
+                        for(int i = 0;i<ChatCount-1;i++){
                             if(ChatList[i].getId() == id_chat){
                                 c = ChatList[i];
                                 System.out.println("Chat Ditemukkan, memasukkan user ke room...");
+                                break;
                             } else {
                                 System.out.println("Tidak ada room!");
                             }
@@ -211,7 +212,7 @@ public class Main {
                         MessageController mc = new MessageController();
                         while (true){
                             System.out.print(currentId + ": ");
-                            message = s.nextLine();
+                            message = s.next();
                             if ("exit".equals(message)){
                                 break;
                             }
@@ -219,7 +220,7 @@ public class Main {
                             c.addMessageToChat(m);
                             
                             System.out.print(c.getMembers()[1] + ": ");
-                            message = s.nextLine();
+                            message = s.next();
                             if ("exit".equals(message)){
                                 break;
                             }
@@ -231,11 +232,12 @@ public class Main {
                         
                     case 8:
                         System.out.print("Masukkan username teman yang ada di room chat: ");
-                        String friend_name = s.nextLine();
+                        String friend_name = s.next();
                         double[] ids = new double[2];
                         
                         UserController fcari = new UserController();
                         UserModel friendf = fcari.getUserByUsername(userList, friend_name);
+                        System.out.println("Friend ID: " + friendf.getId());
                         ids[0] = currentId;
                         ids[1] = friendf.getId();
                         ChatController finder = new ChatController();
