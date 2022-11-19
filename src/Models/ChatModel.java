@@ -21,6 +21,10 @@ public class ChatModel {
         messagecount = 0;
     }
     
+    public ChatModel(){
+        
+    }
+    
     public void addMembers(double id){
         members[membercount] = id;
         membercount += 1;

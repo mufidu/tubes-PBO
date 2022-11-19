@@ -32,6 +32,12 @@ public class MessageController {
         while(isFound == false){
             if(chatid == cl[i].getId()){
                 //get apa?
+                for (MessageModel messagel : cl[i].getMessagel()) {
+                    System.out.println(messagel.getSenderId() + ": " + messagel.getText());
+                }
+                isFound = true;
+            } else {
+                i++;
             }
         }
     }

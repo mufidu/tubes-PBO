@@ -20,6 +20,9 @@ public class MessageModel {
     public MessageModel(double id) {
         this.id = id;
     }
+    public MessageModel(){
+        
+    }
 
     public double getChatId() {
         return chatId;
@@ -51,6 +54,14 @@ public class MessageModel {
 
     public void setTimesent(Date timesent) {
         this.timesent = timesent;
+    }
+
+    public double getId() {
+        return id;
+    }
+
+    public void setId(double id) {
+        this.id = id;
     }
     
     

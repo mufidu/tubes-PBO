@@ -5,6 +5,7 @@ import Controllers.MessageController;
 import Models.ChatModel;
 import Models.UserModel;
 import Models.ChatModel;
+import Models.MessageModel;
 import java.util.Scanner;
 import java.awt.image.BufferedImage;
 import java.awt.Graphics;
@@ -122,7 +123,9 @@ public class Main {
                 System.out.println("4. Hapus user");
                 System.out.println("5. Log out");
                 System.out.println("6. Bikin Chat");
-                System.out.print("Pilihan (1-6): ");
+                System.out.println("7. Masuk Room Chat");
+                System.out.println("8. Find ID Chat");
+                System.out.print("Pilihan (1-8): ");
                 int pil = s.nextInt();
 
                 switch (pil) {
@@ -171,6 +174,7 @@ public class Main {
                         System.out.println("\nAnda telah log out.\n");
                         break LOGGED_IN;
                     case 6:
+                        System.out.println("");
                         ChatController Chat = new ChatController();
                         System.out.print("Masukkan User Id teman anda: ");
                         double idteman = s.nextDouble();
@@ -178,6 +182,54 @@ public class Main {
                         ChatCount++;
                         System.out.println("Chat berhasil dibuat!");
                         break;
+                    case 7:
+                        ChatModel c = new ChatModel();
+                        System.out.println("");
+                        System.out.print("Masukkan chat ID: ");
+                        double id_chat = s.nextDouble();
+                        for(int i = 0;i<ChatList.length;i++){
+                            if(ChatList[i].getId() == id_chat){
+                                c = ChatList[i];
+                                System.out.println("Chat Ditemukkan, memasukkan user ke room...");
+                            } else {
+                                System.out.println("Tidak ada room!");
+                            }
+                        }
+                        MessageModel m = new MessageModel();
+                        String message = "";
+                        MessageController mc = new MessageController();
+                        while (true){
+                            System.out.print(currentId + ": ");
+                            message = s.nextLine();
+                            if ("exit".equals(message)){
+                                break;
+                            }
+                            m = mc.addMessage(message, id_chat, currentId);
+                            c.addMessageToChat(m);
+                            
+                            System.out.print(c.getMembers()[1] + ": ");
+                            message = s.nextLine();
+                            if ("exit".equals(message)){
+                                break;
+                            }
+                            m = mc.addMessage(message, id_chat, c.getMembers()[1]);
+                            c.addMessageToChat(m);
+                       
+                        }
+                        break;
+                        
+                    case 8:
+                        System.out.print("Masukkan ID Friend yang ada di room chat: ");
+                        double friend_id = s.nextDouble();
+                        double[] ids = new double[2];
+                        ids[0] = currentId;
+                        ids[1] = friend_id;
+                        ChatController finder = new ChatController();
+                        
+                        finder.findChat(ChatList, ids);
+                        break;
+                        
+                        
                         
                     default:
                         System.out.println("\nPilihan invalid!\n");
