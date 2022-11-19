@@ -33,6 +33,7 @@ public class Main {
         int numOfUser = 0;
         UserController user = new UserController();
         AuthController auth = new AuthController();
+        ChatController cc = new ChatController();
         UserModel[] userList = new UserModel[numOfUser];
         UserModel[] tempUserList;
         double currentId = 0;
@@ -120,9 +121,9 @@ public class Main {
                 System.out.println("5. Buat Room Chat");
                 System.out.println("6. Masuk Room Chat");
                 System.out.println("7. Cari Teman Chat");
-                System.out.println("8. Cari ID Room Chat");
+                System.out.println("8. Cari Room Chat ID");
                 System.out.println("9. Log out");
-                System.out.print("Pilihan (1-8): ");
+                System.out.print("Pilihan (1-9): ");
                 int pil = s.nextInt();
 
                 switch (pil) {
@@ -168,7 +169,6 @@ public class Main {
                         }
                     case 5:
                         System.out.println("");
-                        ChatController chat = new ChatController();
                         System.out.print("Masukkan username teman anda: ");
                         String teman = s.next();
                         // Memastikan user dengan username tersebut ada
@@ -188,7 +188,7 @@ public class Main {
                                 double idTeman = temanChat.getId();
                                 System.out.println("Current Id: " + currentId);
                                 System.out.println("Id Teman: " + idTeman);
-                                chatList[chatCount] = chat.createChat(currentId, idTeman);
+                                chatList[chatCount] = cc.createChat(currentId, idTeman);
                                 chatCount++;
                                 System.out.println("\nChat berhasil dibuat!");
                                 System.out.println("Chat ID: " + chatList[chatCount-1].getId() + "\n");
@@ -202,10 +202,13 @@ public class Main {
                         break;
                     case 6:
                         ChatModel c = new ChatModel();
-                        System.out.println("");
-                        System.out.print("Masukkan Chat ID: ");
-                        double id_chat = s.nextDouble();
+                        System.out.print("\nMasukkan username teman anda: ");
+                        String teman2 = s.next();
                         s.nextLine();
+                        UserModel temanChat2 = user.getUserByUsername(userList, teman2);
+                        double[] idUsers = new double[] { currentId, temanChat2.getId() };
+                        double id_chat = cc.findChat(chatList, idUsers);
+
                         boolean ketemu = false;
                         for(int i = 0; i < chatCount; i++){
                             if(chatList[i].getId() == id_chat){
@@ -250,8 +253,7 @@ public class Main {
                         }
                         break;
                     case 7:
-                        ChatController cc = new ChatController();
-                        System.out.println("");
+                        Thread.sleep(500);
                         cc.findUserChats(userList, currentId, chatList, chatCount);
                         break;
                     case 8:
@@ -259,14 +261,14 @@ public class Main {
                         String friend_name = s.next();
                         double[] ids = new double[2];
                         
+                        Thread.sleep(500);
                         UserModel friendf = user.getUserByUsername(userList, friend_name);
                         System.out.println("\nFriend ID: " + friendf.getId());
                         ids[0] = currentId;
                         ids[1] = friendf.getId();
-                        ChatController finder = new ChatController();
                         
-                        finder.findChat(chatList, ids);
-                        System.out.println("");
+                        double chatIdDicari = cc.findChat(chatList, ids);
+                        System.out.println("Chat ID: " + chatIdDicari + '\n');
                         break;
                     case 9:
                         currentId = 0;

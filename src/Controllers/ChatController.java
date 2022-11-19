@@ -44,22 +44,22 @@ public class ChatController {
         System.out.println();
     }
     
-    public void findChat(ChatModel chatList[], double[] users) {
+    public double findChat(ChatModel chatList[], double[] users) {
         int matches=0;
         
-        for (int i = 0; i < chatList.length; i++){
-            for (int j = 0; j < 2; j++){
-                if (users[0] == chatList[i].getMembers()[j] || users[1] == chatList[i].getMembers()[j]){
-                   matches+=1;
+        for (int i = 0; i < chatList.length; i++) {
+            for (int j = 0; j < 2; j++) {
+                if (users[0] == chatList[i].getMembers()[j] || users[1] == chatList[i].getMembers()[j]) {
+                    matches += 1;
                 }
             }
-            if(matches == 2){
-                System.out.println("Chat ID = " + chatList[i].getId());
-                break;
+            if (matches == 2) {
+                return chatList[i].getId();
             } else {
                 matches = 0;
             }
         }
         
+        return -1;
     }
 }
