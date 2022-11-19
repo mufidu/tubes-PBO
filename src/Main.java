@@ -188,6 +188,8 @@ public class Main {
                                 double idTeman = temanChat.getId();
                                 System.out.println("Current Id: " + currentId);
                                 System.out.println("Id Teman: " + idTeman);
+                                System.out.println("\nMembuat room chat...");
+                                Thread.sleep(500);
                                 chatList[chatCount] = cc.createChat(currentId, idTeman);
                                 chatCount++;
                                 System.out.println("\nChat berhasil dibuat!");
@@ -214,7 +216,8 @@ public class Main {
                             if(chatList[i].getId() == id_chat){
                                 c = chatList[i];
                                 ketemu = true;
-                                System.out.println("\nChat ditemukan, memasukkan user ke room...");
+                                System.out.println("\nChat ditemukan, memasukkan user ke room chat...");
+                                Thread.sleep(500);
                                 break;
                             }
                         }
@@ -234,18 +237,18 @@ public class Main {
                             String message;
                             MessageController mc = new MessageController();
                             CHAT:
-                            while (true){
-                                for (int i = 0; i < c.getMembers().length; i++) {
-                                    String username = user.getUserById(userList, c.getMembers()[i]).getUsername();
-                                    Thread.sleep(500);
-                                    System.out.print(username + ": ");
+                            while (true) {
+                                System.out.print("Apakah Anda ingin mengirim pesan? (y/n): ");
+                                if ("y".equals(s.next())) {
+                                    System.out.print("Pesan: ");
+                                    s.nextLine();
                                     message = s.nextLine();
-                                    if ("exit".equals(message)) {
-                                        System.out.println("\nAnda telah keluar dari chat.\n");
-                                        break CHAT;
-                                    }
-                                    m = mc.addMessage(message, id_chat, c.getMembers()[i]);
+                                    m = mc.addMessage(message, id_chat, currentId);
                                     c.addMessageToChat(m);
+                                    System.out.println("Pesan berhasil dikirim!");
+                                } else {
+                                    System.out.println("\nAnda telah keluar dari room chat...\n");
+                                    break CHAT;
                                 }
                             }
                         } else {
