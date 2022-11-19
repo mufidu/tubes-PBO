@@ -5,6 +5,7 @@
 package Controllers;
 import Models.ChatModel;
 import java.lang.Math;
+import java.util.Arrays;
 /**
  *
  * @author johan
@@ -25,7 +26,7 @@ public class ChatController {
         for(i=0;i<cl.length;i++){
             for(int j=0;j<cl[i].getMembercount();i++){
                 if(userid == cl[i].getMembers()[j]){
-                    System.out.println("Ada di chat room dengan: " + cl[i].getMembers());
+                    System.out.println("Ada di chat room dengan: " + Arrays.toString(cl[i].getMembers()));
                 }
             }
         }
@@ -33,10 +34,9 @@ public class ChatController {
     }
     
     public void findChat(ChatModel cl[], double[] users){
-        int i=0;
         int matches=0;
         
-        for(i=0;i<cl.length;i++){
+        for(int i=0;i<cl.length;i++){
             for(int j=0;j<2;j++){
                 if(users[0] == cl[i].getMembers()[j] || users[1] == cl[i].getMembers()[j]){
                    matches+=1;

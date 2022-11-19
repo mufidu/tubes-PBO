@@ -205,38 +205,37 @@ public class Main {
                         System.out.println("");
                         System.out.print("Masukkan chat ID: ");
                         double id_chat = s.nextDouble();
-                        for(int i = 0;i<chatCount-1;i++){
+                        boolean ketemu = false;
+                        for(int i = 0; i < chatCount; i++){
                             if(chatList[i].getId() == id_chat){
                                 c = chatList[i];
-                                System.out.println("Chat ditemukan, memasukkan user ke room...");
+                                ketemu = true;
+                                System.out.println("\nChat ditemukan, memasukkan user ke room...");
                                 break;
-                            } else {
-                                System.out.println("Chat tidak ditemukan!");
                             }
                         }
-                        System.out.println("\nChat dimulai!");
-                        System.out.println("Untuk keluar, silahkan ketik 'exit'");
-                        MessageModel m = new MessageModel();
-                        String message = "";
-                        MessageController mc = new MessageController();
-                        while (true){
-                            System.out.print(currentId + ": ");
-                            message = s.next();
-                            if ("exit".equals(message)){
-                                System.out.println("\nAnda telah keluar dari chat.\n");
-                                break;
+                        if (ketemu == true) {
+                            System.out.println("\nChat dimulai!");
+                            System.out.println("Untuk keluar, silahkan ketik 'exit'");
+                            MessageModel m;
+                            String message;
+                            MessageController mc = new MessageController();
+                            CHAT:
+                            while (true){
+                                for (int i = 0; i < c.getMembers().length; i++) {
+                                    String username = user.getUserById(userList, c.getMembers()[i]).getUsername();
+                                    System.out.print(username + ": ");
+                                    message = s.next();
+                                    if ("exit".equals(message)) {
+                                        System.out.println("\nAnda telah keluar dari chat.\n");
+                                        break CHAT;
+                                    }
+                                    m = mc.addMessage(message, id_chat, currentId);
+                                    c.addMessageToChat(m);
+                                }
                             }
-                            m = mc.addMessage(message, id_chat, currentId);
-                            c.addMessageToChat(m);
-                            
-                            System.out.print(c.getMembers()[1] + ": ");
-                            message = s.next();
-                            if ("exit".equals(message)){
-                                System.out.println("\nAnda telah keluar dari chat.\n");
-                                break;
-                            }
-                            m = mc.addMessage(message, id_chat, c.getMembers()[1]);
-                            c.addMessageToChat(m);
+                        } else {
+                            System.out.println("Chat tidak ditemukan!");
                         }
                         break;
                     case 7:
@@ -244,8 +243,7 @@ public class Main {
                         String friend_name = s.next();
                         double[] ids = new double[2];
                         
-                        UserController fcari = new UserController();
-                        UserModel friendf = fcari.getUserByUsername(userList, friend_name);
+                        UserModel friendf = user.getUserByUsername(userList, friend_name);
                         System.out.println("\nFriend ID: " + friendf.getId());
                         ids[0] = currentId;
                         ids[1] = friendf.getId();
