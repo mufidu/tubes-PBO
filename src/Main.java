@@ -77,10 +77,12 @@ public class Main {
                         tempUserList = userList;
                         userList = new UserModel[numOfUser];
                         System.arraycopy(tempUserList, 0, userList, 0, tempUserList.length);
+                        Thread.sleep(500);
                         auth.registerUser(userList, numOfUser);
                         break;
                     case 2:
                         double userId = auth.loginUser(userList);
+                        Thread.sleep(500);
                         if (userId != -1){
                             System.out.println("");
                             System.out.println("=======Selamat Datang!======");
@@ -98,6 +100,7 @@ public class Main {
                         if (currentId == 0) {
                             System.out.println("\nMaaf Anda harus login terlebih dahulu!\n");
                         } else {
+                            Thread.sleep(500);
                             System.out.println("\n============================\n");
                             break MENU;
                         }
@@ -138,6 +141,8 @@ public class Main {
                         break;
                     case 2:
                         UserModel u = user.getUserById(userList, currentId);
+                        Thread.sleep(500);
+                        System.out.println("========Info Profile=======");
                         System.out.println("\nHalo, "+u.getUsername()+"!");
                         System.out.println("Username: " + u.getUsername());
                         System.out.println("Username teman-teman: ");
@@ -155,6 +160,7 @@ public class Main {
                         break;
                     case 3:
                         user.updateUser(userList, currentId);
+                        Thread.sleep(500);
                         System.out.println("\nUser berhasil diubah!\n");
                         break;
                     case 4:
@@ -165,12 +171,12 @@ public class Main {
                             System.out.println("\nUser berhasil dihapus.\n");
                             break LOGGED_IN;
                         } else {
-                            System.out.println("\nUser tidak jadi dihapus\n");
+                            System.out.println("\nUser tidak jadi dihapus.\n");
                             break;
                         }
                     case 5:
                         System.out.println("");
-                        System.out.print("Masukkan username teman anda: ");
+                        System.out.print("Masukkan username teman Anda: ");
                         String teman = s.next();
                         // Memastikan user dengan username tersebut ada
                         UserModel temanChat = user.getUserByUsername(userList, teman);
@@ -205,9 +211,8 @@ public class Main {
                         break;
                     case 6:
                         ChatModel c = new ChatModel();
-                        System.out.print("\nMasukkan username teman anda: ");
+                        System.out.print("\nMasukkan username teman Anda: ");
                         String teman2 = s.next();
-                        s.nextLine();
                         UserModel temanChat2 = user.getUserByUsername(userList, teman2);
                         double[] idUsers = new double[] { currentId, temanChat2.getId() };
                         double id_chat = cc.findChat(chatList, idUsers);
@@ -217,7 +222,7 @@ public class Main {
                             if(chatList[i].getId() == id_chat){
                                 c = chatList[i];
                                 ketemu = true;
-                                System.out.println("\nChat ditemukan, memasukkan user ke room chat...");
+                                System.out.println("\nChat ditemukan, memasukkan Anda ke room chat...");
                                 Thread.sleep(500);
                                 break;
                             }
@@ -237,19 +242,18 @@ public class Main {
                             MessageModel m;
                             String message;
                             MessageController mc = new MessageController();
+                            s.nextLine();
                             CHAT:
                             while (true) {
-                                System.out.print("Apakah Anda ingin mengirim pesan? (y/n): ");
-                                if ("y".equals(s.next())) {
-                                    System.out.print("Pesan: ");
-                                    s.nextLine();
-                                    message = s.nextLine();
-                                    m = mc.addMessage(message, id_chat, currentId);
-                                    c.addMessageToChat(m);
-                                    System.out.println("Pesan berhasil dikirim!");
-                                } else {
+                                System.out.print("Pesan: ");
+                                message = s.nextLine();
+                                if ("exit".equals(message)) {
                                     System.out.println("\nAnda telah keluar dari room chat...\n");
                                     break CHAT;
+                                } else {
+                                    m = mc.addMessage(message, id_chat, currentId);
+                                    c.addMessageToChat(m);
+                                    System.out.println("Pesan berhasil terkirim!");
                                 }
                             }
                         } else {
@@ -276,6 +280,7 @@ public class Main {
                         break;
                     case 9:
                         currentId = 0;
+                        Thread.sleep(500);
                         System.out.println("\nAnda telah log out.\n");
                         break LOGGED_IN;
                     default:
