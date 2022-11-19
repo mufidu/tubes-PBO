@@ -104,6 +104,7 @@ public class Main {
                         break;
                     case 4:
                         System.out.println("\nSelamat tinggal!\n");
+                        s.close();
                         break APP;
                     default:
                         System.out.println("\nPilihan invalid!\n");
