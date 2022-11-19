@@ -15,7 +15,7 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
-
+import java.lang.Thread;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -29,7 +29,7 @@ import java.util.Arrays;
 public class Main {
     
     
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
         Scanner s = new Scanner(System.in);
         int numOfUser = 0;
         UserController user = new UserController();
@@ -217,6 +217,16 @@ public class Main {
                         if (ketemu == true) {
                             System.out.println("\nChat dimulai!");
                             System.out.println("Untuk keluar, silahkan ketik 'exit'");
+                            // Tampilkan chat sebelumnya
+                            MessageModel[] messageList = c.getMessageList();
+                            for (int i = 0; i < messageList.length; i++) {
+                                if (messageList[i] != null) {
+                                    String username = user.getUserById(userList, messageList[i].getSenderId()).getUsername();
+                                    System.out.println(username + ": "
+                                            + messageList[i].getText());
+                                }
+                            }
+                            // Mulai chat baru
                             MessageModel m;
                             String message;
                             MessageController mc = new MessageController();
@@ -224,13 +234,14 @@ public class Main {
                             while (true){
                                 for (int i = 0; i < c.getMembers().length; i++) {
                                     String username = user.getUserById(userList, c.getMembers()[i]).getUsername();
+                                    Thread.sleep(500);
                                     System.out.print(username + ": ");
                                     message = s.next();
                                     if ("exit".equals(message)) {
                                         System.out.println("\nAnda telah keluar dari chat.\n");
                                         break CHAT;
                                     }
-                                    m = mc.addMessage(message, id_chat, currentId);
+                                    m = mc.addMessage(message, id_chat, c.getMembers()[i]);
                                     c.addMessageToChat(m);
                                 }
                             }

@@ -12,20 +12,20 @@ public class ChatModel {
     private double id;
     private double[] members;
     private int membercount;
-    private MessageModel[] messagel;
+    private MessageModel[] messageList;
     private int messagecount;
     
     public ChatModel(double id) {
         this.id = id;
         membercount = 0;
-        messagel = new MessageModel[9999];
+        messageList = new MessageModel[9999];
         messagecount = 0;
         members = new double[2];
     }
     
     public ChatModel(){
         membercount = 0;
-        messagel = new MessageModel[9999];
+        messageList = new MessageModel[9999];
         messagecount = 0;
         id = Math.random();
         members = new double[2];
@@ -37,7 +37,7 @@ public class ChatModel {
     }
     
     public void addMessageToChat(MessageModel m){
-        messagel[messagecount] = m;
+        messageList[messagecount] = m;
         messagecount += 1;
         
     }
@@ -66,12 +66,12 @@ public class ChatModel {
         this.membercount = membercount;
     }
 
-    public MessageModel[] getMessagel() {
-        return messagel;
+    public MessageModel[] getMessageList() {
+        return messageList;
     }
 
-    public void setMessagel(MessageModel[] messagel) {
-        this.messagel = messagel;
+    public void setMessageList(MessageModel[] messageList) {
+        this.messageList = messageList;
     }
     
     
