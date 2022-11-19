@@ -24,22 +24,4 @@ public class MessageController {
         
         return m;
     }
-    
-    public void getMessage(double chatid, ChatModel cl[]){
-        boolean isFound = false;
-        int i=0;
-        while(isFound == false){
-            if(chatid == cl[i].getId()){
-                //get apa?
-                for (MessageModel messagel : cl[i].getMessageList()) {
-                    System.out.println(messagel.getSenderId() + ": " + messagel.getText());
-                }
-                isFound = true;
-            } else {
-                i++;
-            }
-        }
-    }
-    
-    
 }
