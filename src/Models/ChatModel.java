@@ -14,6 +14,7 @@ public class ChatModel {
     private int membercount;
     private MessageModel[] messagel;
     private int messagecount;
+    
     public ChatModel(double id) {
         this.id = id;
         membercount = 0;

@@ -2,7 +2,6 @@ import Controllers.AuthController;
 import Controllers.UserController;
 import Controllers.ChatController;
 import Controllers.MessageController;
-import Models.ChatModel;
 import Models.UserModel;
 import Models.ChatModel;
 import Models.MessageModel;
@@ -33,16 +32,14 @@ public class Main {
     public static void main(String[] args) throws IOException {
         Scanner s = new Scanner(System.in);
         int numOfUser = 0;
-        
         UserController user = new UserController();
         AuthController auth = new AuthController();
         UserModel[] userList = new UserModel[numOfUser];
         UserModel[] tempUserList;
         double currentId = 0;
         UserModel currentUser = new UserModel(null, null);
-        ChatModel[] ChatList = new ChatModel[9999];
-        int ChatCount = 0;
-        
+        ChatModel[] chatList = new ChatModel[9999];
+        int chatCount = 0;
         
         BufferedImage image = new BufferedImage(144, 32, BufferedImage.TYPE_INT_RGB);
         Graphics g = image.getGraphics();
@@ -121,10 +118,10 @@ public class Main {
                 System.out.println("2. Info profil");
                 System.out.println("3. Edit user");
                 System.out.println("4. Hapus user");
-                System.out.println("5. Log out");
-                System.out.println("6. Bikin Chat");
-                System.out.println("7. Masuk Room Chat");
-                System.out.println("8. Find ID Chat");
+                System.out.println("5. Bikin Chat");
+                System.out.println("6. Masuk Room Chat");
+                System.out.println("7. Find ID Chat");
+                System.out.println("8. Log out");
                 System.out.print("Pilihan (1-8): ");
                 int pil = s.nextInt();
 
@@ -170,43 +167,55 @@ public class Main {
                             break;
                         }
                     case 5:
-                        currentId = 0;
-                        System.out.println("\nAnda telah log out.\n");
-                        break LOGGED_IN;
-                    case 6:
                         System.out.println("");
-                        ChatController Chat = new ChatController();
-                        System.out.print("Masukkan User nama teman anda: ");
+                        ChatController chat = new ChatController();
+                        System.out.print("Masukkan username teman anda: ");
                         String teman = s.next();
-                        UserController ffinder = new UserController();
-                        UserModel temanmodel = ffinder.getUserByUsername(userList, teman);
-                        if(temanmodel != null){
-                            System.out.println("Teman ketemu!");
+                        // Memastikan user dengan username tersebut ada
+                        UserModel temanChat = user.getUserByUsername(userList, teman);
+                        if(temanChat != null){
+                            // Memastikan current user berteman dengan user tersebut
+                            double[] listTeman = currentUser.getFriends();
+                            boolean berteman = false;
+                            for (int i = 0; i < listTeman.length; i++) {
+                                if (temanChat.getId() == temanChat.getId()) {
+                                    berteman = true;
+                                    break;
+                                }
+                            }
+                            if (berteman == true) {
+                                System.out.println("Teman ditemukan!");
+                                double idTeman = temanChat.getId();
+                                System.out.println("Current Id: " + currentId);
+                                System.out.println("Id Teman: " + idTeman);
+                                chatList[chatCount] = chat.createChat(currentId, idTeman);
+                                chatCount++;
+                                System.out.println("\nChat berhasil dibuat!");
+                                System.out.println("Chat ID: " + chatList[chatCount-1].getId() + "\n");
+                            } else {
+                                System.out.println("Anda tidak berteman dengan "
+                                        + temanChat.getUsername() + "!\n");
+                            }
                         } else {
-                            System.out.println("teman tidak ditemukan!");
+                            System.out.println("\nUser tidak ditemukan!\n");
                         }
-                        double id_teman = temanmodel.getId();
-                        System.out.println("Id Teman: " + id_teman);
-                        System.out.println("Current Id: " + currentId);
-                        ChatList[ChatCount] = Chat.createChat(currentId, id_teman);
-                        ChatCount++;
-                        System.out.println("Chat berhasil dibuat!");
-                        System.out.println("ChatID: " + ChatList[ChatCount-1].getId());
                         break;
-                    case 7:
+                    case 6:
                         ChatModel c = new ChatModel();
                         System.out.println("");
                         System.out.print("Masukkan chat ID: ");
                         double id_chat = s.nextDouble();
-                        for(int i = 0;i<ChatCount-1;i++){
-                            if(ChatList[i].getId() == id_chat){
-                                c = ChatList[i];
-                                System.out.println("Chat Ditemukkan, memasukkan user ke room...");
+                        for(int i = 0;i<chatCount-1;i++){
+                            if(chatList[i].getId() == id_chat){
+                                c = chatList[i];
+                                System.out.println("Chat ditemukan, memasukkan user ke room...");
                                 break;
                             } else {
-                                System.out.println("Tidak ada room!");
+                                System.out.println("Chat tidak ditemukan!");
                             }
                         }
+                        System.out.println("\nChat dimulai!");
+                        System.out.println("Untuk keluar, silahkan ketik 'exit'");
                         MessageModel m = new MessageModel();
                         String message = "";
                         MessageController mc = new MessageController();
@@ -214,6 +223,7 @@ public class Main {
                             System.out.print(currentId + ": ");
                             message = s.next();
                             if ("exit".equals(message)){
+                                System.out.println("\nAnda telah keluar dari chat.\n");
                                 break;
                             }
                             m = mc.addMessage(message, id_chat, currentId);
@@ -222,31 +232,32 @@ public class Main {
                             System.out.print(c.getMembers()[1] + ": ");
                             message = s.next();
                             if ("exit".equals(message)){
+                                System.out.println("\nAnda telah keluar dari chat.\n");
                                 break;
                             }
                             m = mc.addMessage(message, id_chat, c.getMembers()[1]);
                             c.addMessageToChat(m);
-                       
                         }
                         break;
-                        
-                    case 8:
+                    case 7:
                         System.out.print("Masukkan username teman yang ada di room chat: ");
                         String friend_name = s.next();
                         double[] ids = new double[2];
                         
                         UserController fcari = new UserController();
                         UserModel friendf = fcari.getUserByUsername(userList, friend_name);
-                        System.out.println("Friend ID: " + friendf.getId());
+                        System.out.println("\nFriend ID: " + friendf.getId());
                         ids[0] = currentId;
                         ids[1] = friendf.getId();
                         ChatController finder = new ChatController();
                         
-                        finder.findChat(ChatList, ids);
+                        finder.findChat(chatList, ids);
+                        System.out.println("");
                         break;
-                        
-                        
-                        
+                    case 8:
+                        currentId = 0;
+                        System.out.println("\nAnda telah log out.\n");
+                        break LOGGED_IN;
                     default:
                         System.out.println("\nPilihan invalid!\n");
                         break;
