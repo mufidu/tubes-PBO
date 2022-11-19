@@ -14,7 +14,6 @@ import java.awt.Font;
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
 import java.lang.Thread;
 
 /*
@@ -205,6 +204,7 @@ public class Main {
                         System.out.println("");
                         System.out.print("Masukkan chat ID: ");
                         double id_chat = s.nextDouble();
+                        s.nextLine();
                         boolean ketemu = false;
                         for(int i = 0; i < chatCount; i++){
                             if(chatList[i].getId() == id_chat){
@@ -219,11 +219,10 @@ public class Main {
                             System.out.println("Untuk keluar, silahkan ketik 'exit'");
                             // Tampilkan chat sebelumnya
                             MessageModel[] messageList = c.getMessageList();
-                            for (int i = 0; i < messageList.length; i++) {
-                                if (messageList[i] != null) {
-                                    String username = user.getUserById(userList, messageList[i].getSenderId()).getUsername();
-                                    System.out.println(username + ": "
-                                            + messageList[i].getText());
+                            for (MessageModel messageList1 : messageList) {
+                                if (messageList1 != null) {
+                                    String username = user.getUserById(userList, messageList1.getSenderId()).getUsername();
+                                    System.out.println(username + ": " + messageList1.getText());
                                 }
                             }
                             // Mulai chat baru
@@ -236,7 +235,7 @@ public class Main {
                                     String username = user.getUserById(userList, c.getMembers()[i]).getUsername();
                                     Thread.sleep(500);
                                     System.out.print(username + ": ");
-                                    message = s.next();
+                                    message = s.nextLine();
                                     if ("exit".equals(message)) {
                                         System.out.println("\nAnda telah keluar dari chat.\n");
                                         break CHAT;

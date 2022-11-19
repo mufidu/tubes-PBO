@@ -33,7 +33,7 @@ public class ChatController {
         
     }
     
-    public void findChat(ChatModel cl[], double[] users){
+    public void findChat(ChatModel cl[], double[] users) {
         int matches=0;
         
         for(int i=0;i<cl.length;i++){

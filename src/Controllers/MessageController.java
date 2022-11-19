@@ -7,7 +7,6 @@ package Controllers;
 import Models.MessageModel;
 import Models.ChatModel;
 import java.lang.Math;
-import java.text.SimpleDateFormat;  
 import java.util.Date;  
 /**
  *

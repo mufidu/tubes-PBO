@@ -39,7 +39,6 @@ public class ChatModel {
     public void addMessageToChat(MessageModel m){
         messageList[messagecount] = m;
         messagecount += 1;
-        
     }
 
     public double getId() {
@@ -73,10 +72,4 @@ public class ChatModel {
     public void setMessageList(MessageModel[] messageList) {
         this.messageList = messageList;
     }
-    
-    
-    
-    
-    
-    
 }

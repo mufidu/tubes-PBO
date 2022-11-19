@@ -20,6 +20,7 @@ public class MessageModel {
     public MessageModel(double id) {
         this.id = id;
     }
+    
     public MessageModel(){
         
     }
@@ -63,8 +64,4 @@ public class MessageModel {
     public void setId(double id) {
         this.id = id;
     }
-    
-    
-    
-    
 }
