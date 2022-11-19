@@ -177,14 +177,21 @@ public class Main {
                         System.out.println("");
                         ChatController Chat = new ChatController();
                         System.out.print("Masukkan User nama teman anda: ");
-                        String teman = s.nextLine();
+                        String teman = s.next();
                         UserController ffinder = new UserController();
                         UserModel temanmodel = ffinder.getUserByUsername(userList, teman);
+                        if(temanmodel != null){
+                            System.out.println("Teman ketemu!");
+                        } else {
+                            System.out.println("teman tidak ditemukan!");
+                        }
                         double id_teman = temanmodel.getId();
+                        System.out.println("Id Teman: " + id_teman);
+                        System.out.println("Current Id: " + currentId);
                         ChatList[ChatCount] = Chat.createChat(currentId, id_teman);
                         ChatCount++;
                         System.out.println("Chat berhasil dibuat!");
-                        System.out.println("ChatID: " + ChatList[ChatCount].getId());
+                        System.out.println("ChatID: " + ChatList[ChatCount-1].getId());
                         break;
                     case 7:
                         ChatModel c = new ChatModel();

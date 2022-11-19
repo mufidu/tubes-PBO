@@ -19,10 +19,15 @@ public class ChatModel {
         membercount = 0;
         messagel = new MessageModel[9999];
         messagecount = 0;
+        members = new double[2];
     }
     
     public ChatModel(){
-        
+        membercount = 0;
+        messagel = new MessageModel[9999];
+        messagecount = 0;
+        id = Math.random();
+        members = new double[2];
     }
     
     public void addMembers(double id){
