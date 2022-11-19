@@ -117,10 +117,11 @@ public class Main {
                 System.out.println("2. Info profil");
                 System.out.println("3. Edit user");
                 System.out.println("4. Hapus user");
-                System.out.println("5. Bikin Chat");
+                System.out.println("5. Buat Room Chat");
                 System.out.println("6. Masuk Room Chat");
-                System.out.println("7. Find ID Chat");
-                System.out.println("8. Log out");
+                System.out.println("7. Cari Teman Chat");
+                System.out.println("8. Cari ID Room Chat");
+                System.out.println("9. Log out");
                 System.out.print("Pilihan (1-8): ");
                 int pil = s.nextInt();
 
@@ -202,7 +203,7 @@ public class Main {
                     case 6:
                         ChatModel c = new ChatModel();
                         System.out.println("");
-                        System.out.print("Masukkan chat ID: ");
+                        System.out.print("Masukkan Chat ID: ");
                         double id_chat = s.nextDouble();
                         s.nextLine();
                         boolean ketemu = false;
@@ -249,6 +250,11 @@ public class Main {
                         }
                         break;
                     case 7:
+                        ChatController cc = new ChatController();
+                        System.out.println("");
+                        cc.findUserChats(userList, currentId, chatList, chatCount);
+                        break;
+                    case 8:
                         System.out.print("Masukkan username teman yang ada di room chat: ");
                         String friend_name = s.next();
                         double[] ids = new double[2];
@@ -262,7 +268,7 @@ public class Main {
                         finder.findChat(chatList, ids);
                         System.out.println("");
                         break;
-                    case 8:
+                    case 9:
                         currentId = 0;
                         System.out.println("\nAnda telah log out.\n");
                         break LOGGED_IN;

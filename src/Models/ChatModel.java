@@ -11,34 +11,34 @@ package Models;
 public class ChatModel {
     private double id;
     private double[] members;
-    private int membercount;
+    private int memberCount;
     private MessageModel[] messageList;
-    private int messagecount;
+    private int messageCount;
     
     public ChatModel(double id) {
         this.id = id;
-        membercount = 0;
+        memberCount = 0;
         messageList = new MessageModel[9999];
-        messagecount = 0;
+        messageCount = 0;
         members = new double[2];
     }
     
     public ChatModel(){
-        membercount = 0;
+        memberCount = 0;
         messageList = new MessageModel[9999];
-        messagecount = 0;
+        messageCount = 0;
         id = Math.random();
         members = new double[2];
     }
     
     public void addMembers(double id){
-        members[membercount] = id;
-        membercount += 1;
+        members[memberCount] = id;
+        memberCount += 1;
     }
     
     public void addMessageToChat(MessageModel m){
-        messageList[messagecount] = m;
-        messagecount += 1;
+        messageList[messageCount] = m;
+        messageCount += 1;
     }
 
     public double getId() {
@@ -57,12 +57,12 @@ public class ChatModel {
         this.members = members;
     }
 
-    public int getMembercount() {
-        return membercount;
+    public int getMemberCount() {
+        return memberCount;
     }
 
-    public void setMembercount(int membercount) {
-        this.membercount = membercount;
+    public void setmemberCount(int memberCount) {
+        this.memberCount = memberCount;
     }
 
     public MessageModel[] getMessageList() {
