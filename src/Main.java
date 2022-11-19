@@ -176,11 +176,15 @@ public class Main {
                     case 6:
                         System.out.println("");
                         ChatController Chat = new ChatController();
-                        System.out.print("Masukkan User Id teman anda: ");
-                        double idteman = s.nextDouble();
-                        ChatList[ChatCount] = Chat.createChat(currentId, idteman);
+                        System.out.print("Masukkan User nama teman anda: ");
+                        String teman = s.nextLine();
+                        UserController ffinder = new UserController();
+                        UserModel temanmodel = ffinder.getUserByUsername(userList, teman);
+                        double id_teman = temanmodel.getId();
+                        ChatList[ChatCount] = Chat.createChat(currentId, id_teman);
                         ChatCount++;
                         System.out.println("Chat berhasil dibuat!");
+                        System.out.println("ChatID: " + ChatList[ChatCount].getId());
                         break;
                     case 7:
                         ChatModel c = new ChatModel();
@@ -219,11 +223,14 @@ public class Main {
                         break;
                         
                     case 8:
-                        System.out.print("Masukkan ID Friend yang ada di room chat: ");
-                        double friend_id = s.nextDouble();
+                        System.out.print("Masukkan username teman yang ada di room chat: ");
+                        String friend_name = s.nextLine();
                         double[] ids = new double[2];
+                        
+                        UserController fcari = new UserController();
+                        UserModel friendf = fcari.getUserByUsername(userList, friend_name);
                         ids[0] = currentId;
-                        ids[1] = friend_id;
+                        ids[1] = friendf.getId();
                         ChatController finder = new ChatController();
                         
                         finder.findChat(ChatList, ids);
