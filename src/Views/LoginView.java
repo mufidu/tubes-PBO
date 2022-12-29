@@ -46,6 +46,11 @@ public class LoginView extends javax.swing.JFrame {
         jLabel3.setText("password");
 
         btn_login.setText("Login");
+        btn_login.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_loginActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Don't have an account?");
 
@@ -106,6 +111,10 @@ public class LoginView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_loginActionPerformed
 
     /**
      * @param args the command line arguments
