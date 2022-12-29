@@ -5,7 +5,9 @@
  */
 package Controllers;
 
-import java.sql.DriverManager;
+import Views.landingView;
+import java.sql.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -31,7 +33,14 @@ public class LoginController {
     
     public void loginUser(String username, String password) {
         try {
-            
+            String sql = "SELECT * FROM user where username='"+username+"' and password='"+password+"';";
+            rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                landingView landView = new landingView();
+                landView.show();
+            } else {
+                JOptionPane.showMessageDialog(null, "username atau password salah");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

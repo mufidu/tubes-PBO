@@ -43,8 +43,18 @@ public class landingView extends javax.swing.JFrame {
         jLabel3.setText("Already have an account?");
 
         btn_to_reg.setText("Register");
+        btn_to_reg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_to_regActionPerformed(evt);
+            }
+        });
 
         btn_to_login.setText("Login");
+        btn_to_login.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_to_loginActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -86,6 +96,20 @@ public class landingView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_to_regActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_to_regActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        RegisterView regView = new RegisterView();
+        regView.show();
+    }//GEN-LAST:event_btn_to_regActionPerformed
+
+    private void btn_to_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_to_loginActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        LoginView logView = new LoginView();
+        logView.show();
+    }//GEN-LAST:event_btn_to_loginActionPerformed
 
     /**
      * @param args the command line arguments

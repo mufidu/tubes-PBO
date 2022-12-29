@@ -21,18 +21,15 @@ public class RegisterController {
                     "root",
                     "");
             this.stmt = conn.createStatement();
-            System.out.println("Connection Berhasil");
-        } catch (Exception E) {
-            System.out.println("Connection Gagal!");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
     
     public void registerUser(String username, String password) {
         try {
             stmt.executeUpdate("INSERT INTO user (username, password) VALUES('"+username+"', '"+password+"');");
-            System.out.println("Registrasi Berhasil");
         } catch (SQLException e){
-            System.out.println("Registrasi Gagal");
             e.printStackTrace();
         }
     }

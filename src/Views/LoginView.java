@@ -5,6 +5,10 @@
  */
 package Views;
 
+import Controllers.LoginController;
+import javax.swing.*;
+import java.sql.*;
+
 /**
  *
  * @author naufalabdillah
@@ -55,6 +59,11 @@ public class LoginView extends javax.swing.JFrame {
         jLabel4.setText("Don't have an account?");
 
         btn_to_reg.setText("Register");
+        btn_to_reg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_to_regActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -114,7 +123,22 @@ public class LoginView extends javax.swing.JFrame {
 
     private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
         // TODO add your handling code here:
+        try {
+            String username = input_user_login.getText();
+            String password = input_pass_login.getText();
+            
+            ctrl.loginUser(username, password);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btn_loginActionPerformed
+
+    private void btn_to_regActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_to_regActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        RegisterView regView = new RegisterView();
+        regView.show();
+    }//GEN-LAST:event_btn_to_regActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,7 +174,8 @@ public class LoginView extends javax.swing.JFrame {
             }
         });
     }
-
+    
+    private LoginController ctrl = new LoginController();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_login;
     private javax.swing.JButton btn_to_reg;

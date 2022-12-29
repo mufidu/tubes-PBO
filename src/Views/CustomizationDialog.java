@@ -4,19 +4,20 @@
  * and open the template in the editor.
  */
 package Views;
-import Controllers.RegisterController;
-import javax.swing.JOptionPane;
+
+import Controllers.UserController;
+import javax.swing.*;
+
 /**
  *
  * @author johan
  */
-public class RegisterView extends javax.swing.JFrame {
+public class CustomizationDialog extends javax.swing.JFrame {
 
     /**
-     * Creates new form RegisterView
+     * Creates new form CustomizationDialog
      */
-    public RegisterView() {
-        this.ctrl = new RegisterController();
+    public CustomizationDialog() {
         initComponents();
     }
 
@@ -33,36 +34,31 @@ public class RegisterView extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        input_user_reg = new javax.swing.JTextField();
-        input_pass_reg = new javax.swing.JPasswordField();
-        input_conf_reg = new javax.swing.JPasswordField();
-        btn_reg = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        btn_to_login = new javax.swing.JButton();
+        input_user_update = new javax.swing.JTextField();
+        input_pass_update = new javax.swing.JPasswordField();
+        input_confirmpass_update = new javax.swing.JPasswordField();
+        btn_update = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("REGISTER PAGE");
+        jLabel1.setText("Customization");
 
-        jLabel2.setText("Nama");
+        jLabel2.setText("username");
 
-        jLabel3.setText("Password");
+        jLabel3.setText("password");
 
-        jLabel4.setText("Confirm Password");
+        jLabel4.setText("confirm password");
 
-        btn_reg.setText("Register");
-        btn_reg.addActionListener(new java.awt.event.ActionListener() {
+        input_user_update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_regActionPerformed(evt);
+                input_user_updateActionPerformed(evt);
             }
         });
 
-        jLabel5.setText("Already have an account?");
-
-        btn_to_login.setText("Login");
-        btn_to_login.addActionListener(new java.awt.event.ActionListener() {
+        btn_update.setText("Update");
+        btn_update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_to_loginActionPerformed(evt);
+                btn_updateActionPerformed(evt);
             }
         });
 
@@ -70,68 +66,62 @@ public class RegisterView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 152, Short.MAX_VALUE)
-                .addComponent(jLabel5)
-                .addGap(18, 18, 18)
-                .addComponent(btn_to_login)
-                .addGap(21, 21, 21))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
+                        .addGap(171, 171, 171)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(86, 86, 86)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel2)
                             .addComponent(jLabel4))
-                        .addGap(67, 67, 67)
+                        .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(input_user_reg, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
-                            .addComponent(input_pass_reg)
-                            .addComponent(input_conf_reg)))
+                            .addComponent(input_user_update, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                            .addComponent(input_pass_update)
+                            .addComponent(input_confirmpass_update)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(147, 147, 147)
-                        .addComponent(btn_reg))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(145, 145, 145)
-                        .addComponent(jLabel1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(142, 142, 142)
+                        .addComponent(btn_update)))
+                .addContainerGap(77, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addGap(27, 27, 27)
                 .addComponent(jLabel1)
-                .addGap(41, 41, 41)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(input_user_reg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
+                    .addComponent(input_user_update, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(input_pass_reg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                    .addComponent(input_pass_update, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(input_conf_reg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(btn_reg)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(btn_to_login))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(input_confirmpass_update, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addComponent(btn_update)
+                .addGap(43, 43, 43))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_regActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_regActionPerformed
+    private void input_user_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_input_user_updateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_input_user_updateActionPerformed
+
+    private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
         // TODO add your handling code here:
         try {
-            String username = input_user_reg.getText();
-            String password = String.valueOf(input_pass_reg.getPassword());
-            String confirmPassword = String.valueOf(input_conf_reg.getPassword());
+            String username = input_user_update.getText();
+            String password = String.valueOf(input_pass_update.getPassword());
+            String confirmPassword = String.valueOf(input_confirmpass_update.getPassword());
             
             if (username.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Username tidak boleh kosong");
@@ -140,7 +130,7 @@ public class RegisterView extends javax.swing.JFrame {
             else if (!password.equals(confirmPassword)) {
                 JOptionPane.showMessageDialog(null, "Password tidak sesuai");
             } else {
-                ctrl.registerUser(username, password);
+                ctrl.updateUser(1, username, password);
                 this.dispose();
                 LoginView logView = new LoginView();
                 logView.show();
@@ -148,14 +138,7 @@ public class RegisterView extends javax.swing.JFrame {
         } catch (Exception e) {
             System.out.println("Register Gagal");
         }
-    }//GEN-LAST:event_btn_regActionPerformed
-
-    private void btn_to_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_to_loginActionPerformed
-        // TODO add your handling code here:
-        dispose();
-        LoginView logView = new LoginView();
-        logView.show();
-    }//GEN-LAST:event_btn_to_loginActionPerformed
+    }//GEN-LAST:event_btn_updateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,34 +157,32 @@ public class RegisterView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegisterView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustomizationDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegisterView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustomizationDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegisterView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustomizationDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegisterView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustomizationDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegisterView().setVisible(true);
+                new CustomizationDialog().setVisible(true);
             }
         });
     }
-    private RegisterController ctrl = new RegisterController();
+    private UserController ctrl = new UserController();
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_reg;
-    private javax.swing.JButton btn_to_login;
-    private javax.swing.JPasswordField input_conf_reg;
-    private javax.swing.JPasswordField input_pass_reg;
-    private javax.swing.JTextField input_user_reg;
+    private javax.swing.JButton btn_update;
+    private javax.swing.JPasswordField input_confirmpass_update;
+    private javax.swing.JPasswordField input_pass_update;
+    private javax.swing.JTextField input_user_update;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     // End of variables declaration//GEN-END:variables
 }

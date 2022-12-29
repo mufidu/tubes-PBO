@@ -36,8 +36,6 @@ public class AddFriendDialog extends javax.swing.JDialog {
 
         jLabel1.setText("Friend name: ");
 
-        jTextField1.setText("jTextField1");
-
         jButton1.setText("Search");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
