@@ -10,33 +10,41 @@ import java.util.Date;
  * @author johan
  */
 public class MessageModel {
-    private double id;
-    private double chatId;
-    private double senderId;
+    private long id;
+    private long chatId;
+    private long senderId;
     private String text;
     private Date timesent;
 
-    public MessageModel(double id) {
+    public MessageModel(long id, long chatId, long senderId, String text, Date timesent) {
         this.id = id;
-    }
-    
-    public MessageModel(){
-        
+        this.chatId = chatId;
+        this.senderId = senderId;
+        this.text = text;
+        this.timesent = timesent;
     }
 
-    public double getChatId() {
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getChatId() {
         return chatId;
     }
 
-    public void setChatId(double chatId) {
+    public void setChatId(long chatId) {
         this.chatId = chatId;
     }
 
-    public double getSenderId() {
+    public long getSenderId() {
         return senderId;
     }
 
-    public void setSenderId(double senderId) {
+    public void setSenderId(long senderId) {
         this.senderId = senderId;
     }
 
@@ -56,11 +64,5 @@ public class MessageModel {
         this.timesent = timesent;
     }
 
-    public double getId() {
-        return id;
-    }
-
-    public void setId(double id) {
-        this.id = id;
-    }
+    
 }

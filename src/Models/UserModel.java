@@ -4,22 +4,23 @@
  */
 package Models;
 import java.lang.Math;
-
+import java.util.*;
 /**
  *
  * @author johan
  */
 public class UserModel {
-    private double id;
+    private long id;
     private String username;
     private String password;
-    private double[] friends;
+    private long friendlist_id;
+    private ArrayList<UserModel> friends;
     
-    public UserModel(String username, String password) {
-        this.id = Math.random();
+    public UserModel(String username, String password, long id, long friendlist_id) {
+        this.id = id;
         this.username = username;
         this.password = password;
-        this.friends = new double[0];
+        this.friends = new ArrayList<>();
     }
 
     public void setUsername(String username) {
@@ -30,14 +31,6 @@ public class UserModel {
         this.password = password;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public double getId() {
-        return id;
-    }
-
     public String getUsername() {
         return username;
     }
@@ -46,11 +39,25 @@ public class UserModel {
         return password;
     }
 
-    public void setFriends(double[] friends) {
-        this.friends = friends;
+    public long getId() {
+        return id;
     }
 
-    public double[] getFriends() {
-        return this.friends;
+    public void setId(long id) {
+        this.id = id;
     }
+
+    public long getFriendlist_id() {
+        return friendlist_id;
+    }
+
+    public void setFriendlist_id(long friendlist_id) {
+        this.friendlist_id = friendlist_id;
+    }
+    
+    public void input_friend(UserModel m){
+        friends.add(m);
+    }
+
+    
 }

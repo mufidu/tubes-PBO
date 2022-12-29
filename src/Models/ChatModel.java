@@ -9,67 +9,43 @@ package Models;
  * @author johan
  */
 public class ChatModel {
-    private double id;
-    private double[] members;
-    private int memberCount;
-    private MessageModel[] messageList;
-    private int messageCount;
+    private long id;
+    private long member1;
+    private long member2;
     
-    public ChatModel(double id) {
+    public ChatModel(long chat_id, long member1, long member2) {
         this.id = id;
-        memberCount = 0;
-        messageList = new MessageModel[9999];
-        messageCount = 0;
-        members = new double[2];
+        this.member1 = member1;
+        this.member2 = member2;
     }
     
-    public ChatModel(){
-        memberCount = 0;
-        messageList = new MessageModel[9999];
-        messageCount = 0;
-        id = Math.random();
-        members = new double[2];
-    }
-    
-    public void addMembers(double id){
-        members[memberCount] = id;
-        memberCount += 1;
-    }
-    
-    public void addMessageToChat(MessageModel m){
-        messageList[messageCount] = m;
-        messageCount += 1;
+    public ChatModel(long member1, long member2){
+        id = Math.round(Math.random());
+        this.member1 = member1;
+        this.member2 = member2;
     }
 
     public double getId() {
         return id;
     }
 
-    public void setId(double id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public double[] getMembers() {
-        return members;
+    public long getMember1() {
+        return member1;
     }
 
-    public void setMembers(double[] members) {
-        this.members = members;
+    public void setMember1(long member1) {
+        this.member1 = member1;
+    }
+    
+    public long getMember2() {
+        return member1;
     }
 
-    public int getMemberCount() {
-        return memberCount;
-    }
-
-    public void setmemberCount(int memberCount) {
-        this.memberCount = memberCount;
-    }
-
-    public MessageModel[] getMessageList() {
-        return messageList;
-    }
-
-    public void setMessageList(MessageModel[] messageList) {
-        this.messageList = messageList;
+    public void setMember2(long member2) {
+        this.member2 = member2;
     }
 }
