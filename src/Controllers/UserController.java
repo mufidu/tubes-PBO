@@ -6,6 +6,7 @@ package Controllers;
 import java.util.Scanner;
 import Models.UserModel;
 import java.sql.*;
+import java.util.*;
 /**
  *
  * @author johan
@@ -14,8 +15,30 @@ public class UserController {
     private Connection conn;
     private Statement stmt;
     private ResultSet rs;
+    private ArrayList<UserModel> users;
     
     public UserController() {
+        users = new ArrayList<>();
+        try{
+            connect();
+            String sql = "SELECT * FROM user";
+            rs = stmt.executeQuery(sql);
+            while(rs.next()){
+                addUser(rs.getString("username"), rs.getString("password"), 
+                        rs.getInt("id"), rs.getInt("friendlist_id"));
+            }
+            disconnect();
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    public void addUser(String username, String password, long id, long friendlist_id){
+        UserModel x = new UserModel(username, password, id , friendlist_id);
+        users.add(x);
+    }
+    
+    public void connect(){
         try {
             this.conn = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/socialife", 
@@ -27,13 +50,42 @@ public class UserController {
         }
     }
     
+    public void disconnect(){
+        try{
+            conn.close();
+            stmt.close();
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
     public void updateUser(int id, String username, String password) {
         try {
+            connect();
             String sql = "UPDATE user SET username='"+username+"', password='"+password+"' WHERE id='"+id+"';";
             stmt.executeUpdate(sql);
+            disconnect();
         } catch (SQLException e){
             e.printStackTrace();
         }
+    }
+    
+    public boolean findUser(String username){
+        
+        boolean cek = false;
+        try{
+            connect();
+            rs = stmt.executeQuery("SELECT * FROM user WHERE username='"+username+"'");
+            while(rs.next()){
+                cek = true;
+            }
+            disconnect();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        
+        
+        return cek;
     }
 //    public UserModel getUserById(UserModel[] users, double id){
 //        for (UserModel user : users) {

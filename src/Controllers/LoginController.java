@@ -5,7 +5,7 @@
  */
 package Controllers;
 
-import Views.landingView;
+import Views.chatList;
 import java.sql.*;
 import javax.swing.JOptionPane;
 
@@ -19,6 +19,10 @@ public class LoginController {
     private ResultSet rs;
     
     public LoginController() {
+        
+    }
+    
+    public void connect(){
         try {
             this.conn = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/socialife", 
@@ -31,16 +35,27 @@ public class LoginController {
         }
     }
     
+    public void disconnect(){
+        try{
+            conn.close();
+            stmt.close();
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
     public void loginUser(String username, String password) {
         try {
+            connect();
             String sql = "SELECT * FROM user where username='"+username+"' and password='"+password+"';";
             rs = stmt.executeQuery(sql);
             if (rs.next()) {
-                landingView landView = new landingView();
+                chatList landView = new chatList();
                 landView.show();
             } else {
                 JOptionPane.showMessageDialog(null, "username atau password salah");
             }
+            disconnect();
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -15,7 +15,10 @@ public class RegisterController {
     private ResultSet rs;
     
     public RegisterController() {
-        try {
+    }
+    
+    public void connect(){
+         try {
             this.conn = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/socialife", 
                     "root",
@@ -26,9 +29,28 @@ public class RegisterController {
         }
     }
     
+    public void disconnect(){
+        try{
+            conn.close();
+        stmt.close();
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    
+    
     public void registerUser(String username, String password) {
+        UserController x = new UserController();
         try {
-            stmt.executeUpdate("INSERT INTO user (username, password) VALUES('"+username+"', '"+password+"');");
+            connect();
+            if(x.findUser(username) == false){
+                stmt.executeUpdate("INSERT INTO user (username, password) VALUES('"+username+"', '"+password+"');");
+            } else {
+                //placeholder, change later
+                System.out.println("UDAH ADA USERNAME TERSIMPAN");
+            }
+            disconnect();
         } catch (SQLException e){
             e.printStackTrace();
         }
