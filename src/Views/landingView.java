@@ -99,16 +99,16 @@ public class landingView extends javax.swing.JFrame {
 
     private void btn_to_regActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_to_regActionPerformed
         // TODO add your handling code here:
-        dispose();
         RegisterView regView = new RegisterView();
         regView.show();
+        dispose();
     }//GEN-LAST:event_btn_to_regActionPerformed
 
     private void btn_to_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_to_loginActionPerformed
         // TODO add your handling code here:
-        dispose();
         LoginView logView = new LoginView();
         logView.show();
+        dispose();
     }//GEN-LAST:event_btn_to_loginActionPerformed
 
     /**

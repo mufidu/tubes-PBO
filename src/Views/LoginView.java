@@ -5,7 +5,7 @@
  */
 package Views;
 
-import Controllers.LoginController;
+import Controllers.UserController;
 import javax.swing.*;
 import java.sql.*;
 
@@ -128,6 +128,7 @@ public class LoginView extends javax.swing.JFrame {
             String password = input_pass_login.getText();
             
             ctrl.loginUser(username, password);
+            dispose();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -175,7 +176,7 @@ public class LoginView extends javax.swing.JFrame {
         });
     }
     
-    private LoginController ctrl = new LoginController();
+    private UserController ctrl = new UserController();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_login;
     private javax.swing.JButton btn_to_reg;

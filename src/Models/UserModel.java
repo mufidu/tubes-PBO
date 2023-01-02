@@ -13,14 +13,11 @@ public class UserModel {
     private long id;
     private String username;
     private String password;
-    private long friendlist_id;
-    private ArrayList<UserModel> friends;
     
-    public UserModel(String username, String password, long id, long friendlist_id) {
+    public UserModel(String username, String password, long id) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.friends = new ArrayList<>();
     }
 
     public void setUsername(String username) {
@@ -45,18 +42,6 @@ public class UserModel {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public long getFriendlist_id() {
-        return friendlist_id;
-    }
-
-    public void setFriendlist_id(long friendlist_id) {
-        this.friendlist_id = friendlist_id;
-    }
-    
-    public void input_friend(UserModel m){
-        friends.add(m);
     }
 
     

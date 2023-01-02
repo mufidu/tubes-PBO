@@ -5,18 +5,22 @@
  */
 package Views;
 
+import Controllers.UserController;
+
 /**
  *
  * @author naufalabdillah
  */
 public class AddFriendDialog extends javax.swing.JDialog {
-
+    UserController ctr = new UserController();
+    String user_now;
     /**
      * Creates new form AddFriendDialog
      */
-    public AddFriendDialog(java.awt.Frame parent, boolean modal) {
+    public AddFriendDialog(java.awt.Frame parent, boolean modal, String user_now) {
         super(parent, modal);
         initComponents();
+        this.user_now = user_now;
     }
 
     /**
@@ -29,14 +33,19 @@ public class AddFriendDialog extends javax.swing.JDialog {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        input_friend = new javax.swing.JTextField();
+        btn_friend = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Friend name: ");
 
-        jButton1.setText("Search");
+        btn_friend.setText("Search");
+        btn_friend.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_friendActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -46,11 +55,11 @@ public class AddFriendDialog extends javax.swing.JDialog {
                 .addGap(60, 60, 60)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(input_friend, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(37, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btn_friend)
                 .addGap(125, 125, 125))
         );
         layout.setVerticalGroup(
@@ -59,14 +68,22 @@ public class AddFriendDialog extends javax.swing.JDialog {
                 .addGap(58, 58, 58)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(input_friend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
-                .addComponent(jButton1)
+                .addComponent(btn_friend)
                 .addContainerGap(55, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_friendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_friendActionPerformed
+        // TODO add your handling code here:
+        String friend = input_friend.getText();
+        ctr.addFriend(this.user_now, friend);
+        
+        
+    }//GEN-LAST:event_btn_friendActionPerformed
 
     /**
      * @param args the command line arguments
@@ -111,8 +128,8 @@ public class AddFriendDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btn_friend;
+    private javax.swing.JTextField input_friend;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
