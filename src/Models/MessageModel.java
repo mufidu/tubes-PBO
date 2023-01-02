@@ -10,59 +10,51 @@ import java.util.Date;
  * @author johan
  */
 public class MessageModel {
-    private long id;
-    private long chatId;
-    private long senderId;
-    private String text;
-    private Date timesent;
+    private long id_user1;
+    private long id_user2;
+    private String message;
+    private Date date;
 
-    public MessageModel(long id, long chatId, long senderId, String text, Date timesent) {
-        this.id = id;
-        this.chatId = chatId;
-        this.senderId = senderId;
-        this.text = text;
-        this.timesent = timesent;
+    public MessageModel(long id_user1, long id_user2, String message, Date date) {
+        this.id_user1 = id_user1;
+        this.id_user2 = id_user2;
+        this.message = message;
+        this.date = date;
     }
 
-    public long getId() {
-        return id;
+    public long getId_user1() {
+        return id_user1;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setId_user1(long id_user1) {
+        this.id_user1 = id_user1;
     }
 
-    public long getChatId() {
-        return chatId;
+    public long getId_user2() {
+        return id_user2;
     }
 
-    public void setChatId(long chatId) {
-        this.chatId = chatId;
+    public void setId_user2(long id_user2) {
+        this.id_user2 = id_user2;
     }
 
-    public long getSenderId() {
-        return senderId;
+    public String getMessage() {
+        return message;
     }
 
-    public void setSenderId(long senderId) {
-        this.senderId = senderId;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    public String getText() {
-        return text;
+    public Date getDate() {
+        return date;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public Date getTimesent() {
-        return timesent;
-    }
-
-    public void setTimesent(Date timesent) {
-        this.timesent = timesent;
-    }
+    
 
     
 }

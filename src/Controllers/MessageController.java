@@ -5,22 +5,87 @@
 package Controllers;
 
 import Models.MessageModel;
+import Models.UserModel;
 import java.lang.Math;
-import java.util.Date;  
+import java.sql.*; 
+import java.util.ArrayList;
+import javax.swing.JTextArea;
 /**
  *
  * @author johan
  */
 public class MessageController {
+    private Connection conn;
+    private Statement stmt;
+    private ResultSet rs;
+    private int msg = 0;
 
-    public MessageModel addMessage(String message, double chatid, double senderid){
-        MessageModel m = new MessageModel(Math.random());
-        m.setChatId(chatid);
-        m.setSenderId(senderid);
-        m.setText(message);
-        Date date = new Date();
-        m.setTimesent(date);   
+    public MessageController() {
+        try{
+            connect();
+            String sql = "SELECT * FROM users";
+            rs = stmt.executeQuery(sql);
+            disconnect();
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    public void connect(){
+        try {
+            this.conn = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/socialife", 
+                    "root",
+                    "");
+            this.stmt = conn.createStatement();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void disconnect(){
+        try{
+            conn.close();
+            stmt.close();
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    public void sendMessage(String text, String username, String usernameFriend) {
+        System.out.println("send message " + username + usernameFriend);
+        String sql = "INSERT INTO `messages` (`id_user1`, `id_user2`, `message`, `date`) VALUES ((SELECT id FROM users WHERE username='" + username + "'), (SELECT id FROM users WHERE username='" + usernameFriend + "'), '" + text + "', CURRENT_TIMESTAMP)";
         
-        return m;
+        try {
+            connect();
+            stmt.executeUpdate(sql);
+            disconnect();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        msg = -5;
+    }
+    
+    public void fillMessage(String username, String usernameFriend, JTextArea chat_window) {
+        chat_window.setText(null);
+        String sql = "SELECT users.username, messages.date, messages.message FROM messages INNER JOIN users ON users.id = messages.id_user1 WHERE (messages.id_user1 = (SELECT id FROM users WHERE username = '" + username +"') AND messages.id_user2 = (SELECT id FROM users WHERE username = '" + usernameFriend +"')) OR (messages.id_user1 = (SELECT id FROM users WHERE username = '" + usernameFriend +"') AND messages.id_user2 = (SELECT id FROM users WHERE username = '" + username +"')) ORDER BY MESSAGES.DATE ASC";
+        
+        try {
+            connect();
+            rs = stmt.executeQuery(sql);
+            rs.next();
+            rs.last();
+            if (msg < rs.getRow()){
+                rs.first();
+                do {
+                    chat_window.append(rs.getObject(1).toString() + ", " + rs.getObject(2).toString() + ": \n" + rs.getObject(3).toString() + "\n \n");
+                } while (rs.next());
+                rs.last();
+                msg = rs.getRow();
+            }
+            disconnect();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
