@@ -42,7 +42,7 @@ public class RegisterView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("REGISTER PAGE");
 
         jLabel2.setText("Name");
@@ -50,6 +50,12 @@ public class RegisterView extends javax.swing.JFrame {
         jLabel3.setText("Password");
 
         jLabel4.setText("Confirm Password");
+
+        input_pass_reg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                input_pass_regActionPerformed(evt);
+            }
+        });
 
         btn_reg.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btn_reg.setText("Register");
@@ -74,23 +80,23 @@ public class RegisterView extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2))
-                                .addGap(58, 58, 58)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(input_pass_reg, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
-                                    .addComponent(input_user_reg)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(input_conf_reg)))
-                        .addGap(18, 18, 18))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(input_user_reg, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(input_pass_reg, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(input_conf_reg)))
+                .addGap(62, 62, 62))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(145, 145, 145)
                         .addComponent(jLabel1))
@@ -128,7 +134,7 @@ public class RegisterView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(btn_to_login))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
@@ -164,6 +170,10 @@ public class RegisterView extends javax.swing.JFrame {
         LoginView logView = new LoginView();
         logView.show();
     }//GEN-LAST:event_btn_to_loginActionPerformed
+
+    private void input_pass_regActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_input_pass_regActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_input_pass_regActionPerformed
 
     /**
      * @param args the command line arguments
