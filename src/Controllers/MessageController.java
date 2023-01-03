@@ -67,7 +67,7 @@ public class MessageController {
     }
     
     public void fillMessage(String username, String usernameFriend, JTextArea chat_window) {
-        chat_window.setText(null);
+        //chat_window.setText(null);
         String sql = "SELECT users.username, messages.date, messages.message FROM messages INNER JOIN users ON users.id = messages.id_user1 WHERE (messages.id_user1 = (SELECT id FROM users WHERE username = '" + username +"') AND messages.id_user2 = (SELECT id FROM users WHERE username = '" + usernameFriend +"')) OR (messages.id_user1 = (SELECT id FROM users WHERE username = '" + usernameFriend +"') AND messages.id_user2 = (SELECT id FROM users WHERE username = '" + username +"')) ORDER BY MESSAGES.DATE ASC";
         
         try {

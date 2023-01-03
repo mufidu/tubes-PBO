@@ -6,25 +6,47 @@
 package Views;
 
 import Controllers.MessageController;
+import static java.lang.Thread.sleep;
 import java.sql.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+import javax.swing.JTextArea;
 
 /**
  *
  * @author naufalabdillah
  */
-public class chatWindow extends javax.swing.JFrame {
+public final class chatWindow extends javax.swing.JFrame {
     MessageController ctr = new MessageController();
     String user_now;
     String user_friend;
     /**
      * Creates new form chatWindow
      */
+    
+    public void refresh(){
+        ctr.fillMessage(user_now, user_friend, chat_window);
+    }
+    
+    
     public chatWindow(String user_now, String user_friend) {
+        this.setTitle(user_friend);
         this.user_now = user_now;
         this.user_friend = user_friend;
         initComponents();
         ctr.fillMessage(user_now, user_friend, chat_window);
         chat_window.setLineWrap(true);
+        
+        Runnable fillMsgsec = new Runnable() {
+            public void run() {
+                refresh();
+            }
+        };
+
+        ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+        executor.scheduleAtFixedRate(fillMsgsec, 0, 300, TimeUnit.MILLISECONDS);
+        
     }
     
     
@@ -101,7 +123,7 @@ public class chatWindow extends javax.swing.JFrame {
         String msg = input_text.getText();
         ctr.sendMessage(msg, user_now, user_friend);
         input_text.setText("");
-        ctr.fillMessage(user_now, user_friend, chat_window);
+        //ctr.fillMessage(user_now, user_friend, chat_window);
     }//GEN-LAST:event_btn_sendActionPerformed
 
     private void btn_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_backActionPerformed
