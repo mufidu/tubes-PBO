@@ -60,6 +60,7 @@ public class chatList extends javax.swing.JFrame {
         btn_open = new javax.swing.JButton();
         btn_add_friend = new javax.swing.JButton();
         btn_reload = new javax.swing.JButton();
+        btn_logout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -97,6 +98,13 @@ public class chatList extends javax.swing.JFrame {
             }
         });
 
+        btn_logout.setText("Logout");
+        btn_logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_logoutActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -123,8 +131,11 @@ public class chatList extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(time_disp)))))
-                .addContainerGap(75, Short.MAX_VALUE))
+                                .addComponent(time_disp))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(btn_logout, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,6 +152,8 @@ public class chatList extends javax.swing.JFrame {
                             .addComponent(time_disp))
                         .addGap(32, 32, 32)
                         .addComponent(btn_open)
+                        .addGap(38, 38, 38)
+                        .addComponent(btn_logout, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -181,12 +194,20 @@ public class chatList extends javax.swing.JFrame {
         fillFriends(user_now);
     }//GEN-LAST:event_btn_reloadActionPerformed
 
+    private void btn_logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_logoutActionPerformed
+        // TODO add your handling code here:
+        LoginView login = new LoginView();
+        login.show();
+        this.dispose();
+    }//GEN-LAST:event_btn_logoutActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_add_friend;
+    private javax.swing.JButton btn_logout;
     private javax.swing.JButton btn_open;
     private javax.swing.JButton btn_reload;
     private javax.swing.JList<String> friend_list;

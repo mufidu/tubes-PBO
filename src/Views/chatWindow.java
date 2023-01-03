@@ -27,6 +27,7 @@ public final class chatWindow extends javax.swing.JFrame {
     
     public void refresh(){
         ctr.fillMessage(user_now, user_friend, chat_window);
+        chat_window.setCaretPosition(chat_window.getDocument().getLength());
     }
     
     
@@ -123,6 +124,7 @@ public final class chatWindow extends javax.swing.JFrame {
         String msg = input_text.getText();
         ctr.sendMessage(msg, user_now, user_friend);
         input_text.setText("");
+        this.chat_window.setText("");
         //ctr.fillMessage(user_now, user_friend, chat_window);
     }//GEN-LAST:event_btn_sendActionPerformed
 
