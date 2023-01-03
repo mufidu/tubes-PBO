@@ -13,12 +13,13 @@ import javax.swing.*;
  * @author johan
  */
 public class CustomizationDialog extends javax.swing.JFrame {
-
+    String user_now;
     /**
      * Creates new form CustomizationDialog
      */
-    public CustomizationDialog() {
+    public CustomizationDialog(String user_now) {
         initComponents();
+        this.user_now = user_now;
     }
 
     /**
@@ -136,7 +137,7 @@ public class CustomizationDialog extends javax.swing.JFrame {
             else if (!password.equals(confirmPassword)) {
                 JOptionPane.showMessageDialog(null, "Password tidak sesuai");
             } else {
-                ctrl.updateUser(1, username, password);
+                ctrl.updateUser(user_now, username, password);
                 this.dispose();
                 LoginView logView = new LoginView();
                 logView.show();
@@ -146,40 +147,6 @@ public class CustomizationDialog extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_updateActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CustomizationDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CustomizationDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CustomizationDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CustomizationDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CustomizationDialog().setVisible(true);
-            }
-        });
-    }
     private UserController ctrl = new UserController();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_update;

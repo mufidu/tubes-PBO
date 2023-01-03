@@ -1,8 +1,6 @@
 import Controllers.UserController;
-import Controllers.ChatController;
 import Controllers.MessageController;
 import Models.UserModel;
-import Models.ChatModel;
 import Models.MessageModel;
 import java.util.Scanner;
 import java.awt.image.BufferedImage;
