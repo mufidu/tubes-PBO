@@ -73,6 +73,7 @@ public final class chatWindow extends javax.swing.JFrame {
         chat_window.setRows(5);
         jScrollPane1.setViewportView(chat_window);
 
+        btn_send.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btn_send.setText("Send");
         btn_send.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -80,6 +81,7 @@ public final class chatWindow extends javax.swing.JFrame {
             }
         });
 
+        btn_back.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btn_back.setText("Back");
         btn_back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

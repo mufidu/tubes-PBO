@@ -35,13 +35,14 @@ public class landingView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Welcome to SociaLife!");
 
         jLabel2.setText("Don't have an account?");
 
         jLabel3.setText("Already have an account?");
 
+        btn_to_reg.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btn_to_reg.setText("Register");
         btn_to_reg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -49,7 +50,11 @@ public class landingView extends javax.swing.JFrame {
             }
         });
 
+        btn_to_login.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btn_to_login.setText("Login");
+        btn_to_login.setMaximumSize(new java.awt.Dimension(77, 23));
+        btn_to_login.setMinimumSize(new java.awt.Dimension(77, 23));
+        btn_to_login.setPreferredSize(new java.awt.Dimension(77, 23));
         btn_to_login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_to_loginActionPerformed(evt);
@@ -68,15 +73,13 @@ public class landingView extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(85, 85, 85)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btn_to_login))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(btn_to_reg)))))
-                .addContainerGap(82, Short.MAX_VALUE))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btn_to_reg)
+                            .addComponent(btn_to_login, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,8 +93,8 @@ public class landingView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(btn_to_login))
-                .addContainerGap(103, Short.MAX_VALUE))
+                    .addComponent(btn_to_login, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
 
         pack();
