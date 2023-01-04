@@ -34,9 +34,9 @@ public class MessageController {
     public void connect(){
         try {
             this.conn = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/socialife", 
+                    "jdbc:mysql://root:Y8WgwRPgeaHkRmGqlfvd@containers-us-west-127.railway.app:5536/railway", 
                     "root",
-                    "");
+                    "Y8WgwRPgeaHkRmGqlfvd");
             this.stmt = conn.createStatement();
         } catch (Exception e) {
             e.printStackTrace();
