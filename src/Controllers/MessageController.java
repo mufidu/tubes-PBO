@@ -34,10 +34,10 @@ public class MessageController {
     public void connect(){
         try {
             this.conn = DriverManager.getConnection(
-                    "jdbc:mysql://root:Y8WgwRPgeaHkRmGqlfvd@containers-us-west-127.railway.app:5536/railway", 
+                    "jdbc:mysql://root:uDpMRxFNGts2C5BbSeA7@containers-us-west-115.railway.app:6887/railway", 
                     "root",
-                    "Y8WgwRPgeaHkRmGqlfvd");
-            this.stmt = conn.createStatement();
+                    "uDpMRxFNGts2C5BbSeA7");
+            this.stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -53,7 +53,7 @@ public class MessageController {
     }
     
     public void sendMessage(String text, String username, String usernameFriend) {
-        String sql = "INSERT INTO `messages` (`id_user1`, `id_user2`, `message`, `date`) VALUES ((SELECT id FROM users WHERE username='" + username + "'), (SELECT id FROM users WHERE username='" + usernameFriend + "'), '" + text + "', CURRENT_TIMESTAMP)";
+        String sql = "INSERT INTO `MESSAGES` (`id_user1`, `id_user2`, `message`, `DATE`) VALUES ((SELECT id FROM users WHERE username='" + username + "'), (SELECT id FROM users WHERE username='" + usernameFriend + "'), '" + text + "', CURRENT_TIMESTAMP)";
         
         try {
             connect();
@@ -67,7 +67,7 @@ public class MessageController {
     
     public void fillMessage(String username, String usernameFriend, JTextArea chat_window) {
 //        chat_window.setText(null);
-        String sql = "SELECT users.username, messages.date, messages.message FROM messages INNER JOIN users ON users.id = messages.id_user1 WHERE (messages.id_user1 = (SELECT id FROM users WHERE username = '" + username +"') AND messages.id_user2 = (SELECT id FROM users WHERE username = '" + usernameFriend +"')) OR (messages.id_user1 = (SELECT id FROM users WHERE username = '" + usernameFriend +"') AND messages.id_user2 = (SELECT id FROM users WHERE username = '" + username +"')) ORDER BY MESSAGES.DATE ASC";
+        String sql = "SELECT users.username, MESSAGES.DATE, MESSAGES.message FROM MESSAGES INNER JOIN users ON users.id = MESSAGES.id_user1 WHERE (MESSAGES.id_user1 = (SELECT id FROM users WHERE username = '" + username +"') AND MESSAGES.id_user2 = (SELECT id FROM users WHERE username = '" + usernameFriend +"')) OR (MESSAGES.id_user1 = (SELECT id FROM users WHERE username = '" + usernameFriend +"') AND MESSAGES.id_user2 = (SELECT id FROM users WHERE username = '" + username +"')) ORDER BY MESSAGES.DATE ASC";
         
         try {
             connect();

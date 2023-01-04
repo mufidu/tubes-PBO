@@ -138,9 +138,9 @@ public class UserController {
     public void connect(){
         try {
             this.conn = DriverManager.getConnection(
-                    "jdbc:mysql://root:Y8WgwRPgeaHkRmGqlfvd@containers-us-west-127.railway.app:5536/railway", 
+                    "jdbc:mysql://root:uDpMRxFNGts2C5BbSeA7@containers-us-west-115.railway.app:6887/railway", 
                     "root",
-                    "Y8WgwRPgeaHkRmGqlfvd");
+                    "uDpMRxFNGts2C5BbSeA7");
             this.stmt = conn.createStatement();
         } catch (Exception e) {
             e.printStackTrace();

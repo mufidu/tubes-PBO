@@ -13,13 +13,13 @@ public class MessageModel {
     private long id_user1;
     private long id_user2;
     private String message;
-    private Date date;
+    private Date DATE;
 
-    public MessageModel(long id_user1, long id_user2, String message, Date date) {
+    public MessageModel(long id_user1, long id_user2, String message, Date DATE) {
         this.id_user1 = id_user1;
         this.id_user2 = id_user2;
         this.message = message;
-        this.date = date;
+        this.DATE = DATE;
     }
 
     public long getId_user1() {
@@ -47,11 +47,11 @@ public class MessageModel {
     }
 
     public Date getDate() {
-        return date;
+        return DATE;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDate(Date DATE) {
+        this.DATE = DATE;
     }
 
     
