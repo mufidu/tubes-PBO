@@ -184,4 +184,15 @@ public class UserController {
         
         return cek;
     }
+    
+    public void removeFriend(String user, String friend){
+        try {
+            connect();
+            String sql = "DELETE FROM friends WHERE id_user1 = (SELECT id FROM users WHERE username = '" + user +"') AND id_user2 = (SELECT id FROM users WHERE username = '" + friend +"')";
+            stmt.executeUpdate(sql);
+            disconnect();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
