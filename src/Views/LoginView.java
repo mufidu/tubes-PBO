@@ -131,7 +131,6 @@ public class LoginView extends javax.swing.JFrame {
         try {
             String username = input_user_login.getText();
             String password = input_pass_login.getText();
-            
             ctrl.loginUser(username, password);
             dispose();
         } catch (Exception e) {

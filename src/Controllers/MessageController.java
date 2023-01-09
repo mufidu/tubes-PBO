@@ -66,7 +66,6 @@ public class MessageController {
     }
     
     public void fillMessage(String username, String usernameFriend, JTextArea chat_window) {
-//        chat_window.setText(null);
         String sql = "SELECT users.username, MESSAGES.DATE, MESSAGES.message FROM MESSAGES INNER JOIN users ON users.id = MESSAGES.id_user1 WHERE (MESSAGES.id_user1 = (SELECT id FROM users WHERE username = '" + username +"') AND MESSAGES.id_user2 = (SELECT id FROM users WHERE username = '" + usernameFriend +"')) OR (MESSAGES.id_user1 = (SELECT id FROM users WHERE username = '" + usernameFriend +"') AND MESSAGES.id_user2 = (SELECT id FROM users WHERE username = '" + username +"')) ORDER BY MESSAGES.DATE ASC";
         
         try {
@@ -76,6 +75,7 @@ public class MessageController {
             rs.last();
             if (msg < rs.getRow()){
                 rs.first();
+                chat_window.setText("");
                 do {
                     chat_window.append(rs.getObject(1).toString() + ", " + rs.getObject(2).toString() + ": \n" + rs.getObject(3).toString() + "\n \n");
                 } while (rs.next());
