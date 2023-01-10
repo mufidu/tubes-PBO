@@ -86,7 +86,6 @@ public class AddFriendDialog extends javax.swing.JDialog {
         // TODO add your handling code here:
         String friend = input_friend.getText();
         ctr.addFriend(this.user_now, friend);
-        chatList.fillFriends(user_now);
     }//GEN-LAST:event_btn_friendActionPerformed
 
     /**
