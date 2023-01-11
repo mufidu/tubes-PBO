@@ -8,6 +8,7 @@ package Views;
 import Controllers.UserController;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -230,6 +231,7 @@ public class chatList extends javax.swing.JFrame {
         String selectedFriend = friend_list.getSelectedValue();
         try {
            ctr.removeFriend(user_now, selectedFriend); 
+           JOptionPane.showMessageDialog(null, "friend deleted successfully!");
         } catch (Exception e) {
             e.printStackTrace();
         }
