@@ -64,6 +64,11 @@ public class chatList extends javax.swing.JFrame {
         btn_delete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
         friend_list.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -238,6 +243,11 @@ public class chatList extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btn_deleteActionPerformed
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        // TODO add your handling code here:
+        name_disp.setText("");
+    }//GEN-LAST:event_formMouseClicked
 
     /**
      * @param args the command line arguments
