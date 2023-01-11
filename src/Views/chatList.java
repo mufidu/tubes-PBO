@@ -222,6 +222,7 @@ public class chatList extends javax.swing.JFrame {
         // TODO add your handling code here:
         CustomizationDialog d = new CustomizationDialog(user_now);
         d.show();
+        this.dispose();
     }//GEN-LAST:event_btn_customActionPerformed
 
     private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
