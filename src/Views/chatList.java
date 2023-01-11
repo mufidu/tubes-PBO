@@ -232,6 +232,7 @@ public class chatList extends javax.swing.JFrame {
         try {
            ctr.removeFriend(user_now, selectedFriend); 
            JOptionPane.showMessageDialog(null, "friend deleted successfully!");
+           fillFriends(user_now);
         } catch (Exception e) {
             e.printStackTrace();
         }
