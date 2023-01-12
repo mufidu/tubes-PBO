@@ -4,7 +4,6 @@
  */
 package Controllers;
 
-import Models.MessageModel;
 import Models.UserModel;
 import java.lang.Math;
 import java.sql.*; 

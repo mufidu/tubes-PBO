@@ -1,7 +1,6 @@
 import Controllers.UserController;
 import Controllers.MessageController;
 import Models.UserModel;
-import Models.MessageModel;
 import java.util.Scanner;
 import java.awt.image.BufferedImage;
 import java.awt.Graphics;
